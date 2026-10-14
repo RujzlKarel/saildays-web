@@ -12,3 +12,22 @@ for u in https://saildays.app/ https://saildays.app/cs/ https://saildays.app/pri
   code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "$u")
   echo "$u $code"; [ "$code" = 200 ] || exit 1
 done
+# Ocekavane kody: 404 stranka, robots, sitemap, ikony, cookie lista; .htaccess a interni soubory se nevydavaji;
+# http presmeruje na https.
+expect() {
+  code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "$2")
+  echo "$2 $code (cekano $1)"; [[ "$code" =~ ^($1)$ ]] || exit 1
+}
+expect 404 https://saildays.app/neexistuje-xyz
+expect 200 https://saildays.app/404.html
+expect 200 https://saildays.app/robots.txt
+expect 200 https://saildays.app/sitemap.xml
+expect 200 https://saildays.app/site.webmanifest
+expect 200 https://saildays.app/favicon.ico
+expect 200 https://saildays.app/apple-touch-icon.png
+expect 200 https://saildays.app/js/cookie-consent.js
+expect '403|404' https://saildays.app/.htaccess
+expect '403|404' https://saildays.app/README.md
+expect 301 http://saildays.app/
+curl -s --max-time 15 https://saildays.app/neexistuje-xyz | grep -q "Page not found" || { echo "404 nevraci vlastni stranku"; exit 1; }
+echo "deploy OK"

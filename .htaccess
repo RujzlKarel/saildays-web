@@ -1,0 +1,42 @@
+# Interni soubory nikdy verejne. Pojistka k exclusions v deploy.sh: i kdyby se sem
+# neco omylem nahralo, server to nevyda.
+<FilesMatch "\.(md|sh|py|example|log|bak)$">
+  Require all denied
+</FilesMatch>
+<FilesMatch "^(\.gitignore|\.env.*|\.htaccess)$">
+  Require all denied
+</FilesMatch>
+
+# Vlastni 404
+ErrorDocument 404 /404.html
+
+# HTTP -> HTTPS (Blueboard to sam nevynucuje). Domena bezi bez www, zadny www redirect.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://saildays.app%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# MIME typy
+AddType image/webp .webp
+AddType application/manifest+json .webmanifest
+
+# Komprese (gzip)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json application/manifest+json application/xml text/xml text/plain image/svg+xml
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Obrazky a ikony - 7 dni, bez immutable: screenshoty se nahrazuji pod stejnym nazvem
+  <FilesMatch "\.(png|webp|svg|ico)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  # JS - kratky cache (1 hodina) + revalidace (verzujeme pres ?v=)
+  <FilesMatch "\.js$">
+    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  </FilesMatch>
+  # HTML a XML - bez cache
+  <FilesMatch "\.(html|xml)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>

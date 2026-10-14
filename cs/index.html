@@ -9,7 +9,6 @@
 <link rel="alternate" hreflang="en" href="https://saildays.app/">
 <link rel="alternate" hreflang="cs" href="https://saildays.app/cs/">
 <link rel="alternate" hreflang="x-default" href="https://saildays.app/">
-<link rel="icon" type="image/svg+xml" href="/img/icon.svg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://saildays.app/cs/">
 <meta property="og:locale" content="cs_CZ">
@@ -19,6 +18,15 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="theme-color" content="#0b3a5c">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Saildays - lodní deník, který se píše sám">
+<meta name="twitter:description" content="Trasa, změny kurzu, kotva a marina, poznámky a námořní mapa. Aplikace pro Android zdarma, bez účtu a bez reklam. Plavby zůstávají v telefonu.">
+<meta name="twitter:image" content="https://saildays.app/img/og.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/img/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <style>
 :root { color-scheme: light dark; --bg: #f4f7fa; --card: #ffffff; --fg: #13202e; --muted: #51606b; --navy: #0b3a5c; --accent: #1971c2; --line: #dbe3ea; --frame: #13202e; }
 @media (prefers-color-scheme: dark) { :root { --bg: #0f1720; --card: #1b2430; --fg: #e6edf3; --muted: #9fb0bc; --navy: #e6edf3; --accent: #4dabf7; --line: #2a3644; --frame: #000000; } }
@@ -70,8 +78,41 @@ footer p { margin: 0 0 6px; }
   .feature .phone img { border-radius: 13px; }
 }
 </style>
+<!-- Consent Mode v2: default denied, volba z cookie saildays_consent se obnovuje pred nactenim GTM -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  analytics_storage: 'denied',
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  wait_for_update: 500
+});
+(function () {
+  var m = document.cookie.match(/(?:^|; )saildays_consent=([^;]*)/);
+  if (!m) return;
+  var g = m[1] === 'granted' ? 'granted' : 'denied';
+  gtag('consent', 'update', {
+    analytics_storage: g,
+    ad_storage: g,
+    ad_user_data: g,
+    ad_personalization: g
+  });
+})();
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5BL8T5LD');</script>
+<!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BL8T5LD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <header>
 <div class="wrap">
 <a class="brand" href="/cs/"><img src="/img/icon.svg" alt="" width="36" height="36">Saildays</a>
@@ -150,5 +191,6 @@ footer p { margin: 0 0 6px; }
 <p>Map data &copy; OpenStreetMap contributors, OpenMapTiles, OpenFreeMap, OpenSeaMap</p>
 </div>
 </footer>
+<script src="/js/cookie-consent.js?v=1"></script>
 </body>
 </html>

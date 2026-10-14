@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://saildays.app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://saildays.app/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://saildays.app/cs/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://saildays.app/"/>
+  </url>
+  <url>
+    <loc>https://saildays.app/cs/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://saildays.app/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://saildays.app/cs/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://saildays.app/"/>
+  </url>
+  <url>
+    <loc>https://saildays.app/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://saildays.app/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://saildays.app/cs/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://saildays.app/privacy/"/>
+  </url>
+  <url>
+    <loc>https://saildays.app/cs/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://saildays.app/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://saildays.app/cs/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://saildays.app/privacy/"/>
+  </url>
+</urlset>

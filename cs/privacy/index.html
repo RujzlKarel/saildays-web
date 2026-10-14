@@ -7,6 +7,26 @@
 <meta name="description" content="Vývojář Saildays neshromažďuje, neukládá ani nesdílí žádné osobní údaje. Plavby zůstávají v telefonu.">
 <link rel="alternate" hreflang="en" href="https://saildays.app/privacy/">
 <link rel="alternate" hreflang="cs" href="https://saildays.app/cs/privacy/">
+<link rel="canonical" href="https://saildays.app/cs/privacy/">
+<link rel="alternate" hreflang="x-default" href="https://saildays.app/privacy/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://saildays.app/cs/privacy/">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:title" content="Saildays - zásady ochrany soukromí">
+<meta property="og:description" content="Vývojář Saildays neshromažďuje, neukládá ani nesdílí žádné osobní údaje. Plavby zůstávají v telefonu.">
+<meta property="og:image" content="https://saildays.app/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Saildays - zásady ochrany soukromí">
+<meta name="twitter:description" content="Vývojář Saildays neshromažďuje, neukládá ani nesdílí žádné osobní údaje. Plavby zůstávají v telefonu.">
+<meta name="twitter:image" content="https://saildays.app/img/og.png">
+<meta name="theme-color" content="#0b3a5c">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/img/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <style>
 :root { color-scheme: light dark; --bg: #f4f7fa; --fg: #14212b; --muted: #51606b; --accent: #0b3a5c; }
 @media (prefers-color-scheme: dark) { :root { --bg: #0d1820; --fg: #e6edf2; --muted: #9fb0bc; --accent: #7cb7e6; } }
@@ -17,14 +37,47 @@ h2 { font-size: 1.15rem; margin: 2rem 0 .5rem; }
 .meta, nav { color: var(--muted); font-size: .95rem; }
 a { color: var(--accent); }
 </style>
+<!-- Consent Mode v2: default denied, volba z cookie saildays_consent se obnovuje pred nactenim GTM -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  analytics_storage: 'denied',
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  wait_for_update: 500
+});
+(function () {
+  var m = document.cookie.match(/(?:^|; )saildays_consent=([^;]*)/);
+  if (!m) return;
+  var g = m[1] === 'granted' ? 'granted' : 'denied';
+  gtag('consent', 'update', {
+    analytics_storage: g,
+    ad_storage: g,
+    ad_user_data: g,
+    ad_personalization: g
+  });
+})();
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5BL8T5LD');</script>
+<!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BL8T5LD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <main>
 <nav><a href="/privacy/" hreflang="en">English</a></nav>
 <h1>Zásady ochrany soukromí Saildays</h1>
-<p class="meta">Účinnost od: 12. října 2026</p>
+<p class="meta">Účinnost od: 14. října 2026</p>
 
-<p><strong>Stručně: vývojář Saildays neshromažďuje, neukládá ani nesdílí žádné vaše osobní údaje.</strong> Žádné účty, server, reklamy, analytika ani hlášení pádů třetím stranám. Plavby zůstávají ve vašem telefonu.</p>
+<p><strong>Stručně: vývojář Saildays neshromažďuje, neukládá ani nesdílí žádné vaše osobní údaje.</strong> Žádné účty, server, reklamy, analytika ani hlášení pádů třetím stranám. Plavby zůstávají ve vašem telefonu. Analytiku používá jen tento web, a to až po vašem souhlasu, viz <a href="#web">Web</a>.</p>
 
 <h2>Kdo jsme</h2>
 <p>Saildays je aplikace pro Android, kterou vydává Nice One s.r.o. (IČO 14033453), Brno, Česká republika. Pro účely těchto zásad je správcem. Kontakt: <a href="mailto:info@nice-one.cz">info@nice-one.cz</a>.</p>
@@ -44,6 +97,9 @@ a { color: var(--accent); }
 <h2>Reklamy, analytika, statistiky pádů</h2>
 <p>Saildays neobsahuje žádný kód pro reklamy, analytiku ani hlášení pádů. Google Play může podle nastavení zařízení sbírat anonymní statistiky pádů a výkonu (Android vitals); dělá to Google, ne my.</p>
 
+<h2 id="web">Web</h2>
+<p>Zásady výše se týkají aplikace. Web saildays.app načítá Google Tag Manager a pro anonymní statistiky návštěvnosti používá Google Analytics 4. Google Analytics ukládá cookies a měří vaši návštěvu až po vašem souhlasu v cookie liště. Do té doby do zařízení nic neukládá a Google dostává nanejvýš anonymní signály bez cookies a identifikátorů (Google Consent Mode). Vaše volba se na rok uloží do cookie <code>saildays_consent</code>; po souhlasu ukládá Google Analytics své cookies <code>_ga</code> a <code>_ga_*</code>. Volbu změníte smazáním cookies pro saildays.app v prohlížeči, lišta se pak zobrazí znovu. Data zpracovává Google Ireland Limited podle <a href="https://policies.google.com/privacy?hl=cs">zásad ochrany soukromí Google</a>. Samotná aplikace Saildays žádnou analytiku neobsahuje.</p>
+
 <h2>Smazání dat</h2>
 <p>Všechna data jsou ve vašem telefonu. Odinstalováním Saildays nebo vymazáním jejího úložiště se smažou. Zálohy ve vašem účtu Google spravujete v nastavení účtu Google.</p>
 
@@ -53,5 +109,6 @@ a { color: var(--accent); }
 <h2>Změny</h2>
 <p>Když se zásady změní, nová verze bude na této stránce s novým datem.</p>
 </main>
+<script src="/js/cookie-consent.js?v=1"></script>
 </body>
 </html>
