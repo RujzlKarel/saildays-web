@@ -14,6 +14,7 @@ ErrorDocument 404 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
   RewriteRule ^ https://saildays.app%{REQUEST_URI} [R=301,L]
 </IfModule>
 

@@ -69,6 +69,8 @@ need "$home_en" 'href="/privacy/"'; need "$home_en" 'href="/cs/"'; need "$home_e
 need "$home_cs" 'href="/cs/privacy/"'; need "$home_cs" 'href="/"'; need "$home_cs" "Brzy v Google Play"
 [ "$(grep -c "<h2>" "$home_en")" = "$(grep -c "<h2>" "$home_cs")" ] || bad "uvodni stranky: nesedi pocet sekci h2"
 [ "$(grep -c "<img " "$home_en")" = "$(grep -c "<img " "$home_cs")" ] || bad "uvodni stranky: nesedi pocet obrazku"
+for l in en cs; do [ -s "img/shot-hero-$l.webp" ] || bad "chybi img/shot-hero-$l.webp"; done
+[ -s img/og.png ] || bad "chybi img/og.png"
 for f in img/*.webp; do
   [ -f "$f" ] || continue
   [ "$(wc -c < "$f")" -le 153600 ] || bad "$f je vetsi nez 150 kB"

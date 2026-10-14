@@ -41,8 +41,8 @@ ID nejsou tajná (jsou vidět v kódu stránky):
 
 | Co | ID |
 |---|---|
-| GTM kontejner | `GTM-5BL8T5LD` (účet RUJZL.cz 106789, kontejner 267115838), publikovaná verze 2 „Saildays web - GA4 config + consent trigger“ |
-| GA4 | `G-9MD50SXETV` (Google tag v GTM, spouštění Initialization - All Pages; v GTM je i trigger `CE - consent_granted`) |
+| GTM kontejner | `GTM-5BL8T5LD` (účet RUJZL.cz 106789, kontejner 267115838), publikovaná verze 3 „Saildays web - consent trigger“ |
+| GA4 | `G-9MD50SXETV` (Google tag v GTM, spouštění Initialization - All Pages; tag má druhý trigger `CE - consent_granted`: první souhlasený `page_view` se tak odešle na téže stránce, protože po `consent update` se tag jen s All Pages znovu nespustí) |
 
 Na všech stránkách (4 + `404.html`) je v `<head>` inline blok: `gtag('consent','default')` vše `denied` s `wait_for_update: 500`, hned za ním obnovení volby z cookie `saildays_consent` (vracející se návštěvník) a pak GTM snippet, za `<body>` jeho `<noscript>` iframe. Na konci `<body>` se načítá `/js/cookie-consent.js?v=1` (při změně skriptu zvýšit `v`).
 
@@ -64,14 +64,14 @@ Ve složce `img/`:
 |---|---|
 | `icon.svg`, `logo.svg` | značka z `Saildays/branding/` (ikona slouží i jako favicon) |
 | `og.png` | náhled pro sdílení (`og:image`), 1200×630 |
-| `shot-<obrazovka>-<jazyk>.webp` | screenshoty `log`, `map`, `note`, `export` × `en`, `cs`; 540×1200, hero používá `shot-log-*` |
+| `shot-<obrazovka>-<jazyk>.webp` | screenshoty `log`, `map`, `note`, `export` × `en`, `cs`; 540×1200, `shot-hero-<jazyk>.webp` (540×1080, z `07-log-dark.png`) je jen v hero |
 
 ## Screenshoty
 
-Zatím jsou v `img/` náhradní screenshoty (tmavě modrá plocha s názvem obrazovky). Skutečné vzniknou z emulátoru do `~/GitHub/Saildays/store/screenshots/<jazyk>/` (1080×2400). Nahrazení, pro každou ze čtyř obrazovek a oba jazyky:
+Skutečné screenshoty z aplikace, zdroj `~/GitHub/Saildays/store/screenshots/`: `web/<jazyk>/shot-<name>-<jazyk>.webp` (už oříznuté, 540×1200) se kopírují do `img/` beze změny; hero vzniká z `<jazyk>/07-log-dark.png` (1080×2160):
 
 ```
-cd ~/GitHub/Saildays/store/screenshots/<jazyk> && cwebp -q 80 -resize 540 0 <png> -o ~/GitHub/saildays-web/img/shot-<name>-<jazyk>.webp
+cwebp -q 80 -resize 540 0 07-log-dark.png -o ~/GitHub/saildays-web/img/shot-hero-<jazyk>.webp
 ```
 
-Názvy souborů musí zůstat stejné (`shot-log-en.webp` atd.), stránky na ně odkazují. Výsledek musí mít 540×1200 a do 150 kB, pak `./check.sh` a `./deploy.sh`.
+`og.png` (1200×630) je `Saildays/store/feature-graphic.png` na pozadí `#0b3a5c`, šířka 1100, render headless Chrome. Názvy souborů musí zůstat, stránky na ně odkazují. Každý WebP do 150 kB, pak `./check.sh` a `./deploy.sh`.
