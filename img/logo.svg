@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" width="260" height="56">
+  <g transform="translate(6 6) scale(0.4074)">
+    <rect width="108" height="108" rx="24" fill="#0B3A5C"/>
+    <path d="M55 22 L55 66 L30 66 Z" fill="#FFFFFF"/>
+    <path d="M59 28 L59 66 L80 66 Z" fill="#8FC8F0"/>
+    <path d="M26 70 L84 70 L78 78 L32 78 Z" fill="#FFFFFF"/>
+    <circle cx="20.0" cy="88.0" r="2" fill="#C92A2A"/><circle cx="27.8" cy="86.3" r="2" fill="#C92A2A"/><circle cx="35.8" cy="86.8" r="2" fill="#C92A2A"/><circle cx="43.7" cy="88.4" r="2" fill="#C92A2A"/><circle cx="51.6" cy="89.7" r="2" fill="#C92A2A"/><circle cx="59.5" cy="88.9" r="2" fill="#C92A2A"/><circle cx="66.9" cy="86.1" r="2" fill="#C92A2A"/><circle cx="74.6" cy="83.9" r="2" fill="#C92A2A"/><circle cx="82.6" cy="83.3" r="2" fill="#C92A2A"/><circle cx="90.3" cy="85.2" r="2" fill="#C92A2A"/>
+  </g>
+  <text x="62" y="38" font-family="Manrope, sans-serif" font-weight="800" font-size="30"><tspan fill="#0B3A5C">Sail</tspan><tspan fill="#1971C2">days</tspan></text>
+</svg>

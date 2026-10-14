@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saildays - lodní deník, který se píše sám</title>
+<meta name="description" content="Saildays nahrává vaši plavbu a vede za vás lodní deník: trasa, změny kurzu, kotva a marina, poznámky a námořní mapa. Aplikace pro Android zdarma, bez účtu a bez reklam. Plavby zůstávají v telefonu.">
+<link rel="canonical" href="https://saildays.app/cs/">
+<link rel="alternate" hreflang="en" href="https://saildays.app/">
+<link rel="alternate" hreflang="cs" href="https://saildays.app/cs/">
+<link rel="alternate" hreflang="x-default" href="https://saildays.app/">
+<link rel="icon" type="image/svg+xml" href="/img/icon.svg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://saildays.app/cs/">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:title" content="Saildays - lodní deník, který se píše sám">
+<meta property="og:description" content="Trasa, změny kurzu, kotva a marina, poznámky a námořní mapa. Aplikace pro Android zdarma, bez účtu a bez reklam. Plavby zůstávají v telefonu.">
+<meta property="og:image" content="https://saildays.app/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="theme-color" content="#0b3a5c">
+<style>
+:root { color-scheme: light dark; --bg: #f4f7fa; --card: #ffffff; --fg: #13202e; --muted: #51606b; --navy: #0b3a5c; --accent: #1971c2; --line: #dbe3ea; --frame: #13202e; }
+@media (prefers-color-scheme: dark) { :root { --bg: #0f1720; --card: #1b2430; --fg: #e6edf3; --muted: #9fb0bc; --navy: #e6edf3; --accent: #4dabf7; --line: #2a3644; --frame: #000000; } }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; overflow-wrap: break-word; }
+a { color: var(--accent); }
+img { max-width: 100%; height: auto; display: block; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--navy); text-decoration: none; font-weight: 800; font-size: 1.3rem; }
+.brand img { width: 36px; height: 36px; border-radius: 9px; }
+.nav { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.lang { display: flex; gap: 4px; font-size: .9rem; font-weight: 600; }
+.lang a, .lang span { padding: 3px 8px; border-radius: 6px; text-decoration: none; }
+.lang span { background: var(--navy); color: var(--bg); }
+.soon { display: inline-block; padding: 6px 12px; border-radius: 8px; border: 1.5px solid var(--accent); color: var(--accent); font-size: .9rem; font-weight: 600; white-space: nowrap; }
+section { padding: 48px 0; }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.12; margin: 0 0 16px; color: var(--navy); letter-spacing: -.01em; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2rem); line-height: 1.2; margin: 0 0 28px; color: var(--navy); }
+h3 { font-size: 1.2rem; line-height: 1.3; margin: 0 0 8px; color: var(--navy); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.lead { font-size: 1.2rem; margin: 0 0 16px; }
+.sub { color: var(--muted); margin: 0 0 24px; }
+.phone { background: var(--frame); border-radius: 34px; padding: 10px; box-shadow: 0 10px 30px rgba(11, 58, 92, .18); width: 100%; max-width: 280px; margin: 0 auto; }
+.phone img { border-radius: 25px; width: 100%; }
+.hero .phone { max-width: 300px; }
+.features { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px 48px; }
+.feature { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 24px; align-items: start; }
+.feature .phone { max-width: 170px; border-radius: 24px; padding: 7px; }
+.feature .phone img { border-radius: 18px; }
+.feature p, .step p { margin: 0; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.step { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.num { display: inline-flex; width: 34px; height: 34px; border-radius: 50%; align-items: center; justify-content: center; background: var(--accent); color: #ffffff; font-weight: 700; margin-bottom: 10px; }
+.privacy ul { margin: 0 0 20px; padding-left: 1.2em; }
+.privacy li { margin-bottom: 8px; }
+.privacy .note { color: var(--muted); }
+footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: .92rem; }
+footer p { margin: 0 0 6px; }
+@media (max-width: 720px) {
+  section { padding: 36px 0; }
+  .hero .wrap, .grid, .steps { grid-template-columns: minmax(0, 1fr); }
+  .soon { white-space: normal; }
+  .hero .phone { max-width: 240px; }
+  .feature { grid-template-columns: 110px minmax(0, 1fr); gap: 16px; }
+  .feature .phone { max-width: 110px; border-radius: 18px; padding: 5px; }
+  .feature .phone img { border-radius: 13px; }
+}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap">
+<a class="brand" href="/cs/"><img src="/img/icon.svg" alt="" width="36" height="36">Saildays</a>
+<div class="nav">
+<nav class="lang" aria-label="Jazyk"><a href="/" hreflang="en" lang="en">EN</a><span aria-current="page">CS</span></nav>
+<span class="soon">Brzy v Google Play</span>
+</div>
+</div>
+</header>
+
+<main>
+<section class="hero">
+<div class="wrap">
+<div>
+<h1>Lodní deník, který se píše sám</h1>
+<p class="lead">Saildays nahrává trasu a zapisuje každý obrat, halsu i změnu kurzu s časem a polohou. Vy plujete, deník vede appka.</p>
+<p class="sub">Aplikace pro Android zdarma. Bez účtu a bez reklam. Plavby zůstávají v telefonu.</p>
+<span class="soon">Brzy v Google Play</span>
+</div>
+<div class="phone"><img src="/img/shot-log-cs.webp" alt="Deník Saildays s časovou osou dne" width="540" height="1200" fetchpriority="high"></div>
+</div>
+</section>
+
+<section class="features">
+<div class="wrap">
+<h2>Co umí</h2>
+<div class="grid">
+<div class="feature">
+<div class="phone"><img src="/img/shot-log-cs.webp" alt="Deník se změnami kurzu" width="540" height="1200" loading="lazy"></div>
+<div><h3>Plavbu nahrává za vás</h3><p>Při vyplutí klepnete na Zahájit nahrávání a Saildays zaznamenává trasu i se zhasnutým displejem a bez signálu. Každou změnu kurzu o 30° a víc zapíše s časem a polohou začátku obratu a na zastavení i vyplutí se zeptá v notifikaci.</p></div>
+</div>
+<div class="feature">
+<div class="phone"><img src="/img/shot-note-cs.webp" alt="Poznámka s větrem, diktováním a fotkami" width="540" height="1200" loading="lazy"></div>
+<div><h3>Všechno ostatní jedním klepnutím</h3><p>Motor, plachty i s refy, kotva, marina, bójka nebo vyvázání na břeh, vždy jedním klepnutím a s aktuální polohou. Poznámka zapíše vítr, manévr, diktovaný text i fotky a nechybí deník vysílačky ani tlačítko MOB, které ukáže cestu zpět k místu pádu.</p></div>
+</div>
+<div class="feature">
+<div class="phone"><img src="/img/shot-map-cs.webp" alt="Mapa s trasou a značením OpenSeaMap" width="540" height="1200" loading="lazy"></div>
+<div><h3>Skutečná námořní mapa</h3><p>Trasa na mapě OpenStreetMap se značením z OpenSeaMap, barevně podle plachet a motoru a se všemi zápisy z deníku. Jednou zobrazené oblasti zůstanou v telefonu, takže mapa funguje i bez signálu.</p></div>
+</div>
+<div class="feature">
+<div class="phone"><img src="/img/shot-export-cs.webp" alt="Souhrn plavby s exportem" width="540" height="1200" loading="lazy"></div>
+<div><h3>Export, když ho potřebujete</h3><p>Ukončenou plavbu vyexportujete jako ZIP s trasou GPX pro libovolnou mapovou aplikaci a souborem JSON s celým deníkem a fotkami. Pošlete ho na Google Disk nebo mailem, nebo ho uložte do telefonu.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="how">
+<div class="wrap">
+<h2>Jak to funguje</h2>
+<ol class="steps">
+<li class="step"><span class="num">1</span><h3>Zahajte nahrávání</h3><p>Při vyplutí klepněte na Zahájit nahrávání. Notifikace ukazuje, že záznam běží.</p></li>
+<li class="step"><span class="num">2</span><h3>Plujte</h3><p>Saildays zapisuje změny kurzu a ptá se na zastavení a vyplutí. Odpovíte přímo v notifikaci, nebo později v deníku.</p></li>
+<li class="step"><span class="num">3</span><h3>Ohlédněte se</h3><p>Projděte si deník po dnech, prohlédněte si plavbu na mapě a doma ji vyexportujte.</p></li>
+</ol>
+</div>
+</section>
+
+<section class="privacy">
+<div class="wrap">
+<h2>Soukromí od začátku</h2>
+<ul>
+<li><strong>Plavby zůstávají v telefonu.</strong> Žádný server, nám se nic neposílá.</li>
+<li><strong>Žádný účet.</strong> Bez registrace a bez e-mailu, stačí otevřít appku a vyplout.</li>
+<li><strong>Žádné reklamy, analytika ani sledování.</strong> A je zdarma.</li>
+</ul>
+<p class="note">Z internetu se stahují jen mapové dlaždice, ze serverů OpenFreeMap a OpenSeaMap. Podrobnosti najdete v <a href="/cs/privacy/">zásadách ochrany soukromí</a>.</p>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap">
+<p>Saildays je lodní deník, ne navigační pomůcka. Vždy používejte oficiální mapy a vlastní úsudek.</p>
+<p>&copy; 2026 Nice One s.r.o., Brno &middot; <a href="mailto:info@nice-one.cz">info@nice-one.cz</a> &middot; <a href="/cs/privacy/">Zásady ochrany soukromí</a></p>
+<p>Map data &copy; OpenStreetMap contributors, OpenMapTiles, OpenFreeMap, OpenSeaMap</p>
+</div>
+</footer>
+</body>
+</html>
