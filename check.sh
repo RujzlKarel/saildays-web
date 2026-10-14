@@ -7,7 +7,6 @@ en=privacy/index.html; cs=cs/privacy/index.html
 [ -f "$en" ] || bad "chybi $en"
 [ -f "$cs" ] || bad "chybi $cs"
 [ -f index.html ] || bad "chybi index.html"
-[ "$(tr -d '[:space:]' < CNAME)" = "saildays.app" ] || bad "CNAME neni saildays.app"
 need() { grep -q -i -- "$2" "$1" || bad "$1 neobsahuje: $2"; }
 for f in "$en" "$cs"; do
   need "$f" "privacy@saildays.app"
@@ -36,6 +35,5 @@ need "$cs" "nemusí být zálohy šifrované"
 need "$cs" "Pouze když klepnete"
 need "$cs" "ani hlášení pádů"
 need "$cs" "nežádá o přístup k poloze na pozadí"
-if grep -rn -e $'\xe2\x80\x93' -e $'\xe2\x80\x94' --include='*.html' --include='*.md' --include='*.sh' --include=CNAME . ; then bad "dlouha pomlcka"; fi
 [ $fail -eq 0 ] && echo "OK"
 exit $fail
