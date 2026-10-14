@@ -26,8 +26,4 @@ Hostitel je `krios.blueboard.cz`, ne `ftp.saildays.app`: certifikát FTP serveru
 
 ## Kontrola
 
-`./check.sh` ověří, že obě stránky existují, mají kontakt `privacy@saildays.app`, klíčová fakta (poloha jen v telefonu, záloha do vlastního účtu Google včetně možného nešifrování bez zámku obrazovky, export jen na pokyn, žádné reklamy ani analytika) a neobsahují dlouhé pomlčky.
-
-## Zbývá
-
-Založit schránku nebo alias `privacy@saildays.app` v administraci Blueboardu.
+`./check.sh` ověří, že obě stránky existují, mají kontakt `info@nice-one.cz`, klíčová fakta (poloha jen v telefonu, záloha do vlastního účtu Google včetně možného nešifrování bez zámku obrazovky, export jen na pokyn, žádné reklamy ani analytika) a neobsahují dlouhé pomlčky.

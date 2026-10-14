@@ -9,7 +9,7 @@ en=privacy/index.html; cs=cs/privacy/index.html
 [ -f index.html ] || bad "chybi index.html"
 need() { grep -q -i -- "$2" "$1" || bad "$1 neobsahuje: $2"; }
 for f in "$en" "$cs"; do
-  need "$f" "privacy@saildays.app"
+  need "$f" "info@nice-one.cz"
   need "$f" "GPX"
   grep -q -E -- "<script|rel=\"stylesheet\"" "$f" && bad "$f nacita externi zdroje"
 done
