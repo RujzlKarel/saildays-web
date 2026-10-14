@@ -40,6 +40,8 @@ need "$cs" "nemusí být zálohy šifrované"
 need "$cs" "Pouze když klepnete"
 need "$cs" "ani hlášení pádů"
 need "$cs" "nežádá o přístup k poloze na pozadí"
+need "$en" "OpenFreeMap"; need "$en" "OpenSeaMap"; need "$en" "Pictures/Saildays"; need "$en" "speech recognition"
+need "$cs" "OpenFreeMap"; need "$cs" "OpenSeaMap"; need "$cs" "Pictures/Saildays"; need "$cs" "rozpoznávání řeči"
 # Uvodni stranky
 home_en=index.html; home_cs=cs/index.html
 [ -f "$home_cs" ] || bad "chybi $home_cs"

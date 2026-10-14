@@ -77,22 +77,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Zásady ochrany soukromí Saildays</h1>
 <p class="meta">Účinnost od: 14. října 2026</p>
 
-<p><strong>Stručně: vývojář Saildays neshromažďuje, neukládá ani nesdílí žádné vaše osobní údaje.</strong> Žádné účty, server, reklamy, analytika ani hlášení pádů třetím stranám. Plavby zůstávají ve vašem telefonu. Analytiku používá jen tento web, a to až po vašem souhlasu, viz <a href="#web">Web</a>.</p>
+<p><strong>Stručně: vývojář Saildays neshromažďuje, neukládá ani nesdílí žádné vaše osobní údaje.</strong> Žádné účty, server, reklamy, analytika ani hlášení pádů třetím stranám. Plavby i fotky zůstávají ve vašem telefonu. Kvůli zobrazení mapy stahuje aplikace mapové dlaždice z OpenFreeMap a OpenSeaMap, viz <a href="#mapa">Mapa</a>. Analytiku používá jen tento web, a to až po vašem souhlasu, viz <a href="#web">Web</a>.</p>
 
 <h2>Kdo jsme</h2>
 <p>Saildays je aplikace pro Android, kterou vydává Nice One s.r.o. (IČO 14033453), Brno, Česká republika. Pro účely těchto zásad je správcem. Kontakt: <a href="mailto:info@nice-one.cz">info@nice-one.cz</a>.</p>
 
 <h2>Poloha</h2>
-<p>Saildays používá polohu zařízení (oprávnění „Při používání aplikace“) jen během nahrávání plavby: od zahájení nahrávání do ukončení plavby. Během nahrávání je vždy vidět notifikace. Poloha slouží k zakreslení trasy a k návrhům zápisů do deníku (změna kurzu, kotvení, vyplutí). Zpracovává se v telefonu a ukládá do databáze aplikace v telefonu. Nikdy se neposílá nám ani nikomu jinému. Saildays nežádá o přístup k poloze na pozadí.</p>
+<p>Saildays používá polohu zařízení (oprávnění „Při používání aplikace“) jen během nahrávání plavby: od zahájení nahrávání do ukončení plavby. Během nahrávání je vždy vidět notifikace. Poloha slouží k zakreslení trasy, k zápisu změn kurzu, k návrhům zápisů do deníku (kotvení, vyplutí), k doplnění polohy k zápisům a v režimu muž přes palubu (MOB) k navigaci zpět k bodu pádu. Zpracovává se v telefonu a ukládá do databáze aplikace v telefonu. Polohu z GPS nikdy neposíláme nám ani nikomu jinému; na mapové servery jde jen výřez mapy, na který se díváte, viz <a href="#mapa">Mapa</a>. Saildays nežádá o přístup k poloze na pozadí.</p>
+
+<h2 id="mapa">Mapa</h2>
+<p>Mapu v Saildays načítáme ze dvou bezplatných mapových služeb: OpenFreeMap (podkladová mapa z dat OpenStreetMap, <code>tiles.openfreemap.org</code>) a OpenSeaMap (námořní značky, <code>tiles.openseamap.org</code>). Aby se mapa zobrazila, telefon stahuje z jejich serverů mapové dlaždice přes šifrované spojení. Jako každý webový server přitom vidí vaši IP adresu a výřez a přiblížení mapy, na které se díváte, což přibližně ukazuje, kde jste nebo kam se díváte. Nic dalšího jim Saildays neposílá: žádnou plavbu, účet ani identifikátor. My tato data nedostáváme a s těmito službami nemáme žádnou smlouvu; platí jejich vlastní zásady. Zobrazené dlaždice zůstávají v mezipaměti v telefonu (až 200 MB), takže mapa funguje i bez signálu. Mezipaměť smažete v Nastavení.</p>
+
+<h2>Fotoaparát, mikrofon a fotky</h2>
+<p>Fotoaparát, mikrofon a fotky Saildays používá jen tehdy, když je sami přidáte k poznámce. Pořízené fotky i fotky vybrané z galerie se ukládají do galerie telefonu (složka Pictures/Saildays), aplikace si drží jen odkaz na ně. V galerii zůstanou i po smazání plavby nebo odinstalování aplikace. Diktování používá službu rozpoznávání řeči ve vašem telefonu (často od Googlu), která převádí hlas na text podle svého nastavení; Saildays zvuk nenahrává ani neukládá a dostane jen rozpoznaný text. Nic z fotoaparátu, mikrofonu ani galerie se k nám nedostane.</p>
+
+<h2>Oprávnění</h2>
+<ul>
+<li><strong>Poloha</strong> (přesná i přibližná, „Při používání aplikace“): záznam trasy, viz Poloha.</li>
+<li><strong>Služba v popředí</strong>: nahrávání pokračuje i se zhasnutým displejem, s viditelnou notifikací.</li>
+<li><strong>Notifikace</strong>: notifikace nahrávání, návrhy zastavení a vyplutí a upozornění na přerušený záznam.</li>
+<li><strong>Spuštění po startu telefonu</strong>: když se telefon během plavby restartuje, Saildays ukáže notifikaci, klepnutím na ni nahrávání obnovíte. Samo se nahrávání nespustí.</li>
+<li><strong>Internet a stav sítě</strong>: stahování mapových dlaždic.</li>
+<li><strong>Mikrofon</strong>: diktování poznámky, aplikace se zeptá až při prvním použití.</li>
+<li><strong>Fotoaparát</strong>: fotka k poznámce.</li>
+<li><strong>Fotky</strong>: zobrazení fotek z galerie, které jste připojili k poznámkám.</li>
+</ul>
 
 <h2>Notifikace</h2>
-<p>Notifikace ukazují, že nahrávání běží, a ptají se na potvrzení navržených zápisů. Vznikají ve vašem telefonu.</p>
+<p>Notifikace ukazují, že nahrávání běží, a ptají se na potvrzení navrženého zastavení a vyplutí. Vznikají ve vašem telefonu.</p>
 
 <h2>Záloha do vašeho účtu Google</h2>
-<p>Pokud máte v telefonu zapnutou zálohu Androidu, může Android zálohovat databázi plaveb Saildays do vašeho vlastního účtu Google, aby šly plavby obnovit v novém telefonu. Plavby se také mohou přenést do nového telefonu přímo při jeho nastavení (přenos dat mezi zařízeními Androidu). Zálohu spravuje Google podle nastavení vašeho účtu; my k ní nemáme přístup. Záloha této aplikace není omezena na zařízení se zámkem obrazovky, takže na zařízení bez zámku nemusí být zálohy šifrované. Zálohu můžete vypnout v nastavení Androidu.</p>
+<p>Pokud máte v telefonu zapnutou zálohu Androidu, může Android zálohovat databázi plaveb Saildays do vašeho vlastního účtu Google, aby šly plavby obnovit v novém telefonu. Plavby se také mohou přenést do nového telefonu přímo při jeho nastavení (přenos dat mezi zařízeními Androidu). Zálohu spravuje Google podle nastavení vašeho účtu; my k ní nemáme přístup. Záloha této aplikace není omezena na zařízení se zámkem obrazovky, takže na zařízení bez zámku nemusí být zálohy šifrované. Fotky do této zálohy nepatří, jsou ve vaší galerii. Zálohu můžete vypnout v nastavení Androidu.</p>
 
 <h2>Export</h2>
-<p>Pouze když klepnete na <em>Exportovat</em>, Saildays vytvoří soubor ZIP s plavbou (trasa GPX a deník JSON). Ten jde jen tam, kam ho sami pošlete: do aplikace, se kterou ho sdílíte (například Google Disk nebo e-mail), nebo do složky v telefonu. Od té chvíle platí zásady zvolené aplikace nebo služby.</p>
+<p>Pouze když klepnete na <em>Exportovat</em>, Saildays vytvoří soubor ZIP s plavbou (trasa GPX, deník JSON a fotky připojené k poznámkám). Ten jde jen tam, kam ho sami pošlete: do aplikace, se kterou ho sdílíte (například Google Disk nebo e-mail), nebo do složky v telefonu. Od té chvíle platí zásady zvolené aplikace nebo služby.</p>
 
 <h2>Reklamy, analytika, statistiky pádů</h2>
 <p>Saildays neobsahuje žádný kód pro reklamy, analytiku ani hlášení pádů. Google Play může podle nastavení zařízení sbírat anonymní statistiky pádů a výkonu (Android vitals); dělá to Google, ne my.</p>
@@ -101,7 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Zásady výše se týkají aplikace. Web saildays.app načítá Google Tag Manager a pro anonymní statistiky návštěvnosti používá Google Analytics 4. Google Analytics ukládá cookies a měří vaši návštěvu až po vašem souhlasu v cookie liště. Do té doby do zařízení nic neukládá a Google dostává nanejvýš anonymní signály bez cookies a identifikátorů (Google Consent Mode). Vaše volba se na rok uloží do cookie <code>saildays_consent</code>; po souhlasu ukládá Google Analytics své cookies <code>_ga</code> a <code>_ga_*</code>. Volbu změníte smazáním cookies pro saildays.app v prohlížeči, lišta se pak zobrazí znovu. Data zpracovává Google Ireland Limited podle <a href="https://policies.google.com/privacy?hl=cs">zásad ochrany soukromí Google</a>. Samotná aplikace Saildays žádnou analytiku neobsahuje.</p>
 
 <h2>Smazání dat</h2>
-<p>Všechna data jsou ve vašem telefonu. Odinstalováním Saildays nebo vymazáním jejího úložiště se smažou. Zálohy ve vašem účtu Google spravujete v nastavení účtu Google.</p>
+<p>Všechna data jsou ve vašem telefonu. Plavbu smažete přímo v aplikaci; odinstalováním Saildays nebo vymazáním jejího úložiště se smažou všechny plavby. Fotky zůstávají v galerii, dokud je tam nesmažete. Zálohy ve vašem účtu Google spravujete v nastavení účtu Google.</p>
 
 <h2>Děti</h2>
 <p>Saildays není určena dětem do 13 let a vědomě nezpracovává jejich údaje.</p>

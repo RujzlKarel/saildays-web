@@ -77,22 +77,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1>Saildays Privacy Policy</h1>
 <p class="meta">Effective date: 14 October 2026</p>
 
-<p><strong>In short: the developer of Saildays does not collect, store or share any of your personal data.</strong> There is no account, no server, no advertising, no analytics and no third-party crash reporting. Your trips stay on your phone. Only this website uses analytics, and only after you agree, see <a href="#website">Website</a>.</p>
+<p><strong>In short: the developer of Saildays does not collect, store or share any of your personal data.</strong> There is no account, no server, no advertising, no analytics and no third-party crash reporting. Your trips and photos stay on your phone. To show the map, the app downloads map tiles from OpenFreeMap and OpenSeaMap, see <a href="#map">Map</a>. Only this website uses analytics, and only after you agree, see <a href="#website">Website</a>.</p>
 
 <h2>Who we are</h2>
 <p>Saildays is an Android app published by Nice One s.r.o. (company ID 14033453), Brno, Czech Republic, which is the controller for the purposes of this policy. Contact: <a href="mailto:info@nice-one.cz">info@nice-one.cz</a>.</p>
 
 <h2>Location</h2>
-<p>Saildays uses your device location (permission "While using the app") only while you record a trip: from the moment you start recording until you end the trip. While recording, a notification is always visible. The location is used to draw your track and to suggest log entries (course change, anchoring, departure). It is processed on your phone and stored in the app database on your phone. It is never sent to us or to anyone else. Saildays does not request background location access.</p>
+<p>Saildays uses your device location (permission "While using the app") only while you record a trip: from the moment you start recording until you end the trip. While recording, a notification is always visible. The location is used to draw your track, to log course changes, to suggest log entries (anchoring, departure), to add a position to your entries and, in man overboard (MOB) mode, to guide you back to the point. It is processed on your phone and stored in the app database on your phone. Your GPS position is never sent to us or to anyone else; only the map area you view reaches the map servers, see <a href="#map">Map</a>. Saildays does not request background location access.</p>
+
+<h2 id="map">Map</h2>
+<p>The map in Saildays is loaded from two free map services: OpenFreeMap (base map from OpenStreetMap data, <code>tiles.openfreemap.org</code>) and OpenSeaMap (seamarks, <code>tiles.openseamap.org</code>). To show the map, your phone downloads map tiles from their servers over an encrypted connection. Like any web server, they receive your IP address and the map area and zoom you are viewing, which roughly shows where you are or where you are looking. Saildays sends them nothing else: no trip, no account and no identifier. We do not receive this data and have no agreement with these services; their own privacy policies apply. Tiles you have viewed are kept in a cache on your phone (up to 200 MB), so the map also works without signal. You can clear the cache in Settings.</p>
+
+<h2>Camera, microphone and photos</h2>
+<p>Saildays uses the camera, the microphone and your photos only when you add them to a note yourself. Photos you take or pick from the gallery are saved to your phone's gallery (folder Pictures/Saildays); the app keeps only a link to them. They stay in the gallery when you delete a trip or uninstall the app. Dictation uses the speech recognition service on your phone (often provided by Google), which turns your voice into text according to its own settings; Saildays does not record or store the audio and receives only the recognised text. Nothing from the camera, microphone or gallery is sent to us.</p>
+
+<h2>Permissions</h2>
+<ul>
+<li><strong>Location</strong> (precise and approximate, "While using the app"): recording your track, see Location.</li>
+<li><strong>Foreground service</strong>: recording continues with the screen off, with a visible notification.</li>
+<li><strong>Notifications</strong>: the recording notification, stop and departure suggestions, and a warning when recording was interrupted.</li>
+<li><strong>Run at startup</strong> (boot completed): after a phone restart during a trip, Saildays shows a notification that you can tap to continue recording. It does not start recording by itself.</li>
+<li><strong>Internet and network state</strong>: downloading map tiles.</li>
+<li><strong>Microphone</strong>: dictating a note, asked for the first time you use it.</li>
+<li><strong>Camera</strong>: taking a photo for a note.</li>
+<li><strong>Photos</strong>: showing photos from your gallery that you attached to notes.</li>
+</ul>
 
 <h2>Notifications</h2>
-<p>Notifications show that recording is running and ask you to confirm suggested log entries. They are created on your phone.</p>
+<p>Notifications show that recording is running and ask you to confirm suggested stops and departures. They are created on your phone.</p>
 
 <h2>Backup to your Google account</h2>
-<p>If Android backup is turned on on your phone, Android may back up the Saildays trip database to your own Google account, so your trips can be restored on a new phone. Your trips may also be transferred to a new phone directly during setup (Android device transfer). The backup is handled by Google under your Google account settings; we have no access to it. Backups of this app are not restricted to devices with a screen lock, so on a device without a screen lock the backup may not be end-to-end encrypted. You can turn backup off in Android settings.</p>
+<p>If Android backup is turned on on your phone, Android may back up the Saildays trip database to your own Google account, so your trips can be restored on a new phone. Your trips may also be transferred to a new phone directly during setup (Android device transfer). The backup is handled by Google under your Google account settings; we have no access to it. Backups of this app are not restricted to devices with a screen lock, so on a device without a screen lock the backup may not be end-to-end encrypted. Photos are not part of this backup; they are in your gallery. You can turn backup off in Android settings.</p>
 
 <h2>Export</h2>
-<p>Only when you tap <em>Export</em>, Saildays creates a ZIP file with your trip (a GPX track and a JSON log). It goes only where you choose: an app you share it with (for example Google Drive or e-mail) or a folder on your phone. From then on, the privacy policy of the app or service you chose applies.</p>
+<p>Only when you tap <em>Export</em>, Saildays creates a ZIP file with your trip (a GPX track, a JSON log and the photos you attached to notes). It goes only where you choose: an app you share it with (for example Google Drive or e-mail) or a folder on your phone. From then on, the privacy policy of the app or service you chose applies.</p>
 
 <h2>Advertising, analytics, crash statistics</h2>
 <p>Saildays contains no advertising, no analytics and no crash reporting code. Google Play may collect anonymous crash and performance statistics (Android vitals) according to your device settings; that is done by Google, not by us.</p>
@@ -101,7 +119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This policy above covers the app. The website saildays.app loads Google Tag Manager and uses Google Analytics 4 for anonymous visit statistics. Google Analytics stores cookies and measures your visit only after you agree in the cookie bar. Until then it stores nothing on your device, and Google receives at most anonymous signals without cookies or identifiers (Google Consent Mode). Your choice is stored for one year in the cookie <code>saildays_consent</code>; after you agree, Google Analytics stores its cookies <code>_ga</code> and <code>_ga_*</code>. You can change your choice by deleting cookies for saildays.app in your browser; the cookie bar then appears again. The data is processed by Google Ireland Limited under the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. The Saildays app itself contains no analytics.</p>
 
 <h2>Deleting your data</h2>
-<p>All data is on your phone. Uninstalling Saildays or clearing its storage deletes it. Backups in your Google account can be managed in your Google account settings.</p>
+<p>All data is on your phone. You can delete a trip in the app; uninstalling Saildays or clearing its storage deletes all trips. Photos stay in your gallery until you delete them there. Backups in your Google account can be managed in your Google account settings.</p>
 
 <h2>Children</h2>
 <p>Saildays is not directed at children under 13 and does not knowingly process their data.</p>
