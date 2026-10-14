@@ -54,13 +54,13 @@ for f in "$home_en" "$home_cs"; do
   need "$f" 'name="description"'
   need "$f" 'property="og:title"'
   need "$f" 'property="og:description"'
-  need "$f" 'property="og:image" content="https://saildays.app/img/og.png"'
+  need "$f" 'property="og:image" content="https://saildays.app/img/og.png?v=2"'
   need "$f" 'rel="icon"'
   need "$f" 'mailto:info@nice-one.cz'
   need "$f" 'Nice One s.r.o.'
   need "$f" 'Map data &copy; OpenStreetMap contributors, OpenMapTiles, OpenFreeMap, OpenSeaMap'
   grep -q -i -E -- 'rel="stylesheet"|@import' "$f" && bad "$f nacita externi styl"
-  for i in $(grep -o -E '(src|href|content)="(https://saildays.app)?/?img/[^"]+"' "$f" | sed -E 's/^[a-z]+="(https:\/\/saildays.app)?\/?//; s/"$//' | sort -u); do
+  for i in $(grep -o -E '(src|href|content)="(https://saildays.app)?/?img/[^"]+"' "$f" | sed -E 's/^[a-z]+="(https:\/\/saildays.app)?\/?//; s/"$//; s/\?v=[0-9]+$//' | sort -u); do
     [ -f "$i" ] || bad "$f odkazuje na chybejici $i"
   done
   grep -o '<img [^>]*>' "$f" | grep -v -E 'width="[0-9]+".*height="[0-9]+"' | grep -q . && bad "$f ma obrazek bez width/height"
