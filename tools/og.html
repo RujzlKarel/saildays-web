@@ -1,0 +1,43 @@
+<!doctype html>
+<!--
+  Náhled pro sdílení (og:image, 1200x630): značka, wordmark v Archivo, claim z content/en.json a fotka úvodu.
+  Render headless Chromem z kořene repa (písmo a fotka se načítají relativně):
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+      --window-size=1200,630 --screenshot=img/og.png "file://$PWD/tools/og.html"
+  Claim je tady natvrdo stejný jako hero_h1 v content/en.json; při změně textu upravit obojí.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Saildays og</title>
+<style>
+  @font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62.5% 125%; src: url(../assets/fonts/archivo-latin.woff2) format("woff2"); }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #0b3a5c; }
+  body { position: relative; font-family: "Archivo", "Helvetica Neue", Arial, sans-serif; color: #eaf2f8; }
+  .photo { position: absolute; right: 0; top: 0; width: 470px; height: 630px; object-fit: cover; object-position: 50% 40%; }
+  .fade { position: absolute; right: 470px; top: 0; width: 120px; height: 630px; margin-right: -1px;
+    background: linear-gradient(90deg, #0b3a5c 0%, rgba(11, 58, 92, 0) 100%); }
+  .text { position: absolute; left: 72px; top: 0; height: 630px; width: 620px; display: flex; flex-direction: column; justify-content: center; }
+  .brand { display: flex; align-items: center; gap: 22px; margin-bottom: 44px; }
+  .brand svg { width: 76px; height: 76px; border-radius: 18px; display: block; }
+  .brand span { font-size: 46px; font-weight: 800; font-variation-settings: "wdth" 118; letter-spacing: .01em; }
+  h1 { margin: 0; font-size: 72px; line-height: .95; font-weight: 850; letter-spacing: -.035em; font-variation-settings: "wdth" 112; color: #fff; max-width: 560px; }
+  p { margin: 28px 0 0; font-size: 26px; line-height: 1.35; color: #a9c8de; max-width: 520px; }
+  .horizon { position: relative; width: 96px; height: 8px; border-bottom: 1px solid #7fa6c2; margin: 0 0 30px; }
+  .horizon::before { content: ""; position: absolute; left: 12px; bottom: 0; width: 16px; height: 8px; border-radius: 16px 16px 0 0; background: #ff6a13; }
+</style>
+</head>
+<body>
+  <img class="photo" src="../img/photo-hero-en.webp" alt="">
+  <div class="fade"></div>
+  <div class="text">
+    <div class="brand">
+      <svg viewBox="0 0 108 108" aria-hidden="true"><rect width="108" height="108" fill="#0B3A5C"/><circle cx="42" cy="47" r="14" fill="#FF6A13"/><path d="M50 24 L50 72 L80 72 C 80 52, 70 34, 50 24 Z" fill="#FFFFFF"/><path d="M33 78 L78 78" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+      <span>Saildays</span>
+    </div>
+    <div class="horizon"></div>
+    <h1>Your sailing logbook writes itself.</h1>
+    <p>Free Android app. No account, no ads. Your trips stay on your phone.</p>
+  </div>
+</body>
+</html>

@@ -4,3 +4,9 @@
 dist/
 # Pismo Archivo (woff2 z Google Fonts, OFL) stahuje build.py; do gitu nepatri
 assets/fonts/*.woff2
+# Zdrojove fotky a prompty (kopie na Drivu Osobni/Jachting/Aplikace/web-media/), na web jdou jen WebP v img/
+media/
+# Python venv pro tools/compose_phone.py (Pillow + numpy)
+.venv/
+# Cache wranglera (deploy.sh)
+.wrangler/
