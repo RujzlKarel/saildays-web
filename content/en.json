@@ -13,6 +13,8 @@
   "hero_more": "See what it does",
   "hero_note": "Free Android app. No account, no ads. Your trips stay on your phone.",
   "hero_alt": "Saildays logbook in dark mode with the day's timeline",
+  "photo_hero_alt": "Saildays logbook on a phone held in the cockpit of a sailing yacht",
+  "photo_helm_alt": "Saildays map with the day's track on a phone mounted next to the compass at the helm",
   "features_h2": "What it does",
   "features_lead": "Tap Start recording when you cast off. Saildays keeps recording with the screen off and without signal, and every entry gets the time and position. When you are back, the trip is already written down.",
   "features": [

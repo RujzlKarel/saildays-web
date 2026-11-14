@@ -8,7 +8,7 @@ Statický web aplikace Saildays pro Android (`https://saildays.app`): úvodní s
 | `/privacy/` (en), `/cs/privacy/` (cs) | `content/privacy/en.html`, `content/privacy/cs.html` (jen `<main>`, hlavičku a patičku přidá build) |
 | `/404.html` | build (věta ve všech 5 jazycích, `noindex`) |
 | `/robots.txt`, `/sitemap.xml`, `/_headers`, `/_worker.js`, ikony, `site.webmanifest` | build (sitemap 5 úvodních + 2 zásady s `hreflang`; `_headers` cache pro `/img/*`, `/assets/*` 7 dní a `/js/*` 1 h, HTML bez cache; `_worker.js` je malý Pages Worker jen na přesměrování www → bez www 301, protože `_redirects` v Pages neumí přesměrování podle hostu a pravidla zóny by chtěla další oprávnění tokenu; ostatní požadavky předává statickým souborům) |
-| `/img/*`, `/js/cookie-consent.js` | kopie z `img/` a `js/` |
+| `/img/*`, `/js/cookie-consent.js` | kopie z `img/` a `js/` (fotky `img/photo-*.webp` vyrábí `tools/photos.sh`, viz Fotky) |
 | `/assets/site.css`, `/assets/fonts/*.woff2` | `assets/` (písmo viz níž) |
 
 ## Jak generovat a prohlédnout
@@ -31,7 +31,7 @@ Starý ručně psaný web z hostingu Blueboard (do 14. 11. 2026) je smazaný; od
 
 ## Vzhled
 
-Směr A2 „editorial katalog" jako `navyfaces.com` (rozhodnutí majitele 14. 11. 2026: „udělat stejně jako web ciferníků"), v paletě Saildays: porcelán `#f2f5f8` a navy `#0b3a5c` z ikony, akcentová modrá `#1971c2` jen na hlavní tlačítko, žádná oranžová. Velký telefon se skutečným snímkem aplikace v CSS rámečku, funkce bez snímku (PDF deník, motohodiny, pauza) jako typografické objekty, žádné karty ani mřížky, tmavý režim podle systému. Tokeny a pravidla v `DESIGN.md`, produktový kontext v `PRODUCT.md`. Report z redesignu a screenshoty: `~/Downloads/webdesigner/saildays-2026-11-14/` na miniai.
+Směr A2 „editorial katalog" jako `navyfaces.com` (rozhodnutí majitele 14. 11. 2026: „udělat stejně jako web ciferníků"), v paletě Saildays: porcelán `#f2f5f8` a navy `#0b3a5c` z ikony, akcentová modrá `#1971c2` jen na hlavní tlačítko, signální oranžová `#ff6a13` ze značky jen jako slunce v horizontu nad nadpisy a v patičce. Úvod a pás ve funkcích jsou fotografie telefonu na plachetnici se skutečným snímkem aplikace (viz Fotky), ostatní funkce telefon se snímkem v CSS rámečku, funkce bez snímku (PDF deník, motohodiny, pauza) jako typografické objekty, žádné karty ani mřížky, tmavý režim podle systému. Tokeny a pravidla v `DESIGN.md`, produktový kontext v `PRODUCT.md`. Report z redesignu a screenshoty: `~/Downloads/webdesigner/saildays-2026-11-14/` na miniai.
 
 ## Písmo
 
@@ -68,7 +68,7 @@ Bez souhlasu odchází z GA4 jen anonymní ping bez cookies (`gcs=G100`), po sou
 
 ## Kontrola
 
-`./check.sh` ověří v `dist/`: úvodní stránky všech 5 jazyků (`lang`, canonical, `hreflang` mezi všemi pěti + `x-default`, `description`, `og:*`, `twitter:card`, favicony, přepínač jazyků, odkaz na zásady správného jazyka a „(EN)" u DE/FR/ES, Nice One s.r.o. a **žádný e-mail ani `mailto:`** (rozhodnutí 14. 11. 2026, spam; v zásadách je adresa zapsaná slovně), atribuce map, kotva `#get`, žádný `meta robots`, existence odkazovaných obrázků, `width`/`height` u obrázků, stejný počet `h2`, `h3` a obrázků ve všech jazycích), jen povolené skripty (inline consent blok, GTM snippet z `googletagmanager.com`, `/js/cookie-consent.js`; jiný `src`, jiná URL nebo iframe = FAIL), jen lokální styl a písmo (žádné `fonts.googleapis`, `@import`, `url(https:`), GTM `GTM-5BL8T5LD` všude a žádné jiné GTM ID, WebP do 150 kB, soubory kolem webu (`404.html`, `robots.txt`, `sitemap.xml` se 7 stránkami, `_headers`, `_worker.js`, manifest, ikony, písmo), cookie lištu s texty všech 5 jazyků, klíčová fakta zásad (poloha jen v telefonu, záloha do vlastního účtu Google, export jen na pokyn, OpenFreeMap a OpenSeaMap, `Pictures/Saildays`, rozpoznávání řeči, žádné reklamy ani analytika, Google Analytics a `saildays_consent` na webu) a žádné dlouhé pomlčky (i v `content/`).
+`./check.sh` ověří v `dist/`: úvodní stránky všech 5 jazyků (`lang`, canonical, `hreflang` mezi všemi pěti + `x-default`, `description`, `og:*`, `twitter:card`, favicony, přepínač jazyků, odkaz na zásady správného jazyka a „(EN)" u DE/FR/ES, Nice One s.r.o. a **žádný e-mail ani `mailto:`** (rozhodnutí 14. 11. 2026, spam; v zásadách je adresa zapsaná slovně), atribuce map, kotva `#get`, žádný `meta robots`, existence odkazovaných obrázků včetně všech variant v `srcset`, `width`/`height` u obrázků, `fetchpriority="high"` a preload fotky úvodu, existence `img/photo-*.webp`, stejný počet `h2`, `h3` a obrázků ve všech jazycích), jen povolené skripty (inline consent blok, GTM snippet z `googletagmanager.com`, `/js/cookie-consent.js`; jiný `src`, jiná URL nebo iframe = FAIL), jen lokální styl a písmo (žádné `fonts.googleapis`, `@import`, `url(https:`), GTM `GTM-5BL8T5LD` všude a žádné jiné GTM ID, WebP do 150 kB, soubory kolem webu (`404.html`, `robots.txt`, `sitemap.xml` se 7 stránkami, `_headers`, `_worker.js`, manifest, ikony, písmo), cookie lištu s texty všech 5 jazyků, klíčová fakta zásad (poloha jen v telefonu, záloha do vlastního účtu Google, export jen na pokyn, OpenFreeMap a OpenSeaMap, `Pictures/Saildays`, rozpoznávání řeči, žádné reklamy ani analytika, Google Analytics a `saildays_consent` na webu) a žádné dlouhé pomlčky (i v `content/`).
 
 ## Obrázky
 
@@ -76,18 +76,34 @@ Ve složce `img/`:
 
 | Soubor | Co to je |
 |---|---|
-| `icon.svg`, `logo.svg` | značka z `Saildays/branding/` (ikona slouží i jako favicon a v hlavičce) |
-| `og.png` | náhled pro sdílení (`og:image`), 1200×630, pro všechny jazyky |
-| `shot-<obrazovka>-<jazyk>.webp` | screenshoty `log`, `map`, `note`, `export` × `en`, `cs`; 540×1200, `shot-hero-<jazyk>.webp` (540×1080, z `07-log-dark.png`) je jen v hero |
+| `icon.svg` | značka „slunce za plachtou", bitová kopie `Saildays/branding/icon.svg` (favicon SVG, ikona v hlavičce) |
+| `icon-512.png` | bitová kopie `Saildays/branding/icon-512.png` (manifest, `purpose: any maskable`; prvky značky leží v bezpečné zóně) |
+| `icon-192.png`, `/apple-touch-icon.png` (180), `/favicon-32x32.png`, `/favicon.ico` (16 + 32) | zmenšeniny `icon-512.png` (Pillow LANCZOS) |
+| `logo.svg` | značka + wordmark „Saildays" v Archivo 800 / šířka 118 převedený na křivky (fontTools nad `assets/fonts/archivo-latin.woff2`); kopie v `Saildays/branding/logo.svg` |
+| `og.png` | náhled pro sdílení (`og:image`), 1200×630, pro všechny jazyky; render `tools/og.html` headless Chromem (příkaz v hlavičce souboru) |
+| `photo-hero-<jazyk>.webp`, `photo-hero-<jazyk>-480.webp` | fotka úvodu: ruka s telefonem v kokpitu, v displeji skutečný `01-log.png`; 780×1170 a 480×720 (`srcset`) |
+| `photo-helm-<jazyk>.webp`, `photo-helm-<jazyk>-m.webp` | pás ve funkcích: telefon v držáku u kompasu, v displeji `02-map.png`; 1400×933 a mobilní výřez 640×731 |
+| `shot-<obrazovka>-<jazyk>.webp` | screenshoty `log`, `map`, `note`, `export` × `en`, `cs`; 540×1200 v CSS rámečku telefonu |
 
-DE, FR a ES zatím ukazují anglické screenshoty (`SHOT_LANG` v `build.py`); až budou snímky v těch jazycích, stačí je přidat jako `shot-<obrazovka>-<jazyk>.webp` a rozšířit `SHOT_LANG`. Build přidává k obrázkům otisk obsahu (`?v=`), takže se cache po výměně snímku obnoví sama.
+DE, FR a ES zatím ukazují anglické screenshoty i fotky (`SHOT_LANG` v `build.py`); až budou snímky v těch jazycích, stačí je přidat jako `shot-<obrazovka>-<jazyk>.webp`, pustit `tools/photos.sh <jazyk>` a rozšířit `SHOT_LANG`. Build přidává k obrázkům otisk obsahu (`?v=`), takže se cache po výměně snímku obnoví sama.
 
 ## Screenshoty
 
-Skutečné screenshoty z aplikace, zdroj `~/GitHub/Saildays/store/screenshots/`: `web/<jazyk>/shot-<name>-<jazyk>.webp` (už oříznuté, 540×1200) se kopírují do `img/` beze změny; hero vzniká z `<jazyk>/07-log-dark.png` (1080×2160):
+Skutečné screenshoty z aplikace, zdroj `~/GitHub/Saildays/store/screenshots/`: `web/<jazyk>/shot-<name>-<jazyk>.webp` (už oříznuté, 540×1200) se kopírují do `img/` beze změny. Názvy souborů musí zůstat, build na ně odkazuje. Každý WebP do 150 kB, pak `python3 tools/build.py`, `./check.sh` a `./deploy.sh`.
 
-```
-cwebp -q 80 -resize 540 0 07-log-dark.png -o ~/GitHub/saildays-web/img/shot-hero-<jazyk>.webp
-```
+## Fotky (telefon na lodi se skutečným snímkem)
 
-`og.png` (1200×630) je `Saildays/store/feature-graphic.png` na pozadí `#0b3a5c`, šířka 1100, render headless Chrome. Názvy souborů musí zůstat, build na ně odkazuje. Každý WebP do 150 kB, pak `python3 tools/build.py`, `./check.sh` a `./deploy.sh`.
+Fotky úvodu a pásu jsou vygenerované (OpenAI přes `impeccable generate-image`, 14. 11. 2026) **s úplně černým vypnutým displejem**; snímek aplikace do nich vkládá program, nikdy generátor. Zdrojové PNG s prompty (`<soubor>.png.json`) jsou v `media/photo/` **mimo git**, kopie na Drivu `Osobní/Jachting/Aplikace/web-media/photo/` (`rclone copy --update media/ gdrive:Osobní/Jachting/Aplikace/web-media/`). Použité: `hero-3.png` (ruka v kokpitu, 1024×1536) a `helm-2.png` (držák u kompasu, 1536×1024); ostatní kandidáti (`hero-1`, `hero-2`, `helm-1`, `chart-1`) leží vedle.
+
+Nástroje potřebují Pillow a numpy (na miniai není numpy v systémovém Pythonu), proto venv v repu (`.venv/` v `.gitignore`):
+
+    python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+
+**Po každé změně screenshotů aplikace** (`Saildays/scripts/screenshots.sh`) stačí jeden příkaz, pak build, check a deploy:
+
+    tools/photos.sh            # EN + CS -> img/photo-hero-*.webp, img/photo-helm-*.webp (ořezy a kvalita natvrdo ve skriptu)
+    tools/photos.sh cs         # jen jeden jazyk
+
+`tools/compose_phone.py <foto.png> <snímek.png> <výstup.png> [--crop …] [--webp img/jméno --widths 780,480] [--debug kontrola.png] [--corners x,y,…]` najde ve fotce největší souvislou černou plochu (displej), z jejího obrysu čtyři rohy (extrémy úhlopříček, hrany zpřesněné proložením přímek, rohy = průsečíky), snímek promítne homografií, zaoblení rohů odhadne z rozdílu zaobleného a ostrého rohu, poměr stran displeje (~1:2.2) srovná doplněním krajních řádků snímku (ne roztažením) a navrch vrátí odlesky skla z fotky (screen). `--debug` vykreslí nalezený obrys, při selhání detekce jdou rohy zadat ručně `--corners` (TL, TR, BR, BL). Zdroj inspirace `Garmin/navy-web/tools/compose_watch.py`.
+
+Kontrola po změně vzhledu: nadpis a tlačítko úvodu nesmí překrývat fotku a stránka nesmí mít vodorovný scroll na 360-1920 px ve všech jazycích: `node tools/overlap.mjs http://127.0.0.1:8765` nad lokálním serverem v `dist/` (Playwright z `~/.claude/skills/webdesigner/scripts/node_modules`).

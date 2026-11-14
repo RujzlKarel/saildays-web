@@ -71,9 +71,14 @@ for l in $LANGS; do
     cs) need "$f" 'href="/cs/privacy/"';;
     *) need "$f" 'href="/privacy/" hreflang="en"'; need "$f" '(EN)';;
   esac
-  grep -o -E '(src|href|content)="(https://saildays.app)?/?img/[^"]+"' "$f" | sed -E 's/^[a-z]+="(https:\/\/saildays.app)?\///; s/"$//; s/\?v=[0-9a-f]+$//' | sort -u | while read -r i; do
+  # odkazovane obrazky existuji (src, href, content i vsechny varianty v srcset / imagesrcset)
+  { grep -o -E '(src|href|content)="(https://saildays.app)?/?img/[^"]+"' "$f" | sed -E 's/^[a-z]+="(https:\/\/saildays.app)?\///; s/"$//';
+    grep -o -E 'srcset="[^"]+"' "$f" | sed -E 's/^srcset="//; s/"$//' | tr ',' '\n' | sed -E 's/^ *\/?//; s/ [0-9]+[wx]$//'; } \
+    | sed -E 's/\?v=[0-9a-f]+$//' | sort -u | while read -r i; do
     [ -f "$D/$i" ] || echo "FAIL: $f odkazuje na chybejici $i"
   done | grep . && fail=1
+  grep -q 'fetchpriority="high"' "$f" || bad "$f: fotka uvodu nema fetchpriority=high"
+  grep -q 'rel="preload" as="image"' "$f" || bad "$f: chybi preload fotky uvodu"
   grep -o '<img [^>]*>' "$f" | grep -v -E 'width="[0-9]+".*height="[0-9]+"' | grep -q . && bad "$f ma obrazek bez width/height"
   h2=$(grep -o "<h2" "$f" | wc -l | tr -d ' '); img=$(grep -o "<img " "$f" | wc -l | tr -d ' ')
   h3=$(grep -o "<h3" "$f" | wc -l | tr -d ' ')
@@ -85,7 +90,7 @@ for l in $LANGS; do
 done
 need "$(home en)" "Coming soon on Google Play"
 need "$(home cs)" "Brzy v Google Play"
-for l in en cs; do [ -s "$D/img/shot-hero-$l.webp" ] || bad "chybi img/shot-hero-$l.webp"; done
+for l in en cs; do for f in photo-hero-$l.webp photo-hero-$l-480.webp photo-helm-$l.webp photo-helm-$l-m.webp; do [ -s "$D/img/$f" ] || bad "chybi img/$f (tools/photos.sh)"; done; done
 [ -s "$D/img/og.png" ] || bad "chybi img/og.png"
 for f in img/*.webp; do
   [ -f "$f" ] || continue

@@ -36,6 +36,9 @@
   --accent: #1971c2;
   --accent-hover: #1864ab;
   --on-accent: #ffffff;
+  --signal: #ff6a13;   /* signální oranžová ze značky (slunce): jen akcent (horizont nad nadpisy, slunce v patičce), nikdy plocha */
+  --rec: #d7263d;      /* stav záznamu v aplikaci; na webu zatím nepoužitá, drží paletu společnou s appkou */
+  --photo-bg: #5d87ad; /* průměrná barva fotek, než se načtou (žádný skok) */
   --paper: #fffdf6;
   --paper-ink: #1b2430;
   --paper-rule: #c9c3b4;
@@ -150,45 +153,60 @@ h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
 .phone { background: var(--bezel); border-radius: 44px; padding: 12px; box-shadow: var(--phone-shadow); width: 100%; }
 .phone img { border-radius: 32px; width: 100%; outline: 1px solid var(--outline-on-deep); outline-offset: -1px; background: #0f1720; }
 
-/* -------- úvod */
-.hero { padding: clamp(24px, 5vh, 64px) 0 clamp(56px, 10vh, 120px); }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+/* -------- motiv lodě: horizont se zapadajícím sluncem nad nadpisy sekcí (žádný text, žádný štítek) */
+.horizon { display: block; position: relative; width: 96px; height: 8px; margin-bottom: 22px; border-bottom: 1px solid var(--ink-2); }
+.horizon::before { content: ""; position: absolute; left: 12px; bottom: 0; width: 16px; height: 8px; border-radius: 16px 16px 0 0; background: var(--signal); }
+.spread-deep .horizon, .get .horizon { border-color: var(--steel-2); }
+
+/* -------- úvod: fotka telefonu v kokpitu se skutečným snímkem (tools/photos.sh), text vlevo, fotka vpravo */
+.hero { padding: clamp(16px, 3vh, 40px) 0 clamp(56px, 10vh, 120px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .95fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .hero h1 { margin-bottom: clamp(28px, 4vw, 48px); }
 .hero-copy { max-width: 31rem; }
 .hero-copy p { color: var(--ink-2); font-size: 1.125rem; }
 .hero-copy b { color: var(--ink); }
 .act { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin: 28px 0 18px; }
 .hero .note { font-size: .97rem; }
-.hero-phone { justify-self: end; width: min(100%, 400px); }
+.hero-photo { justify-self: end; width: 100%; }
+.hero-photo img { width: 100%; height: auto; max-height: min(84vh, 900px); object-fit: cover; object-position: 50% 45%;
+  background: var(--photo-bg); outline: 1px solid var(--outline); outline-offset: -1px; box-shadow: var(--phone-shadow); }
 
 @media (max-width: 820px) {
-  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero { padding-top: 8px; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .hero-text { display: contents; }
-  .hero h1 { order: 1; margin-bottom: 8px; }
-  .hero-phone { order: 2; justify-self: center; width: min(68vw, 340px); margin: 12px 0 8px; }
+  .hero h1 { order: 1; margin-bottom: 20px; }
+  /* fotka přes celou šířku displeje (bez okraje), text pod ní zpět v okraji */
+  .hero-photo { order: 2; width: calc(100% + 2 * var(--gutter)); margin: 0 calc(-1 * var(--gutter)) 28px; }
+  .hero-photo img { max-height: 118vw; box-shadow: none; outline: 0; }
   .hero-copy { order: 3; max-width: none; }
   .act { flex-direction: column; align-items: stretch; text-align: center; }
 }
+
+/* -------- pás s fotkou přes celou šířku (telefon v držáku u kompasu s mapou dne) */
+.band { margin: 0; background: var(--photo-bg); }
+.band img { width: 100%; height: auto; max-height: 82vh; object-fit: cover; object-position: 72% 50%; background: var(--photo-bg); }
+@media (max-width: 820px) { .band img { max-height: none; object-position: 50% 50%; } }
 
 /* -------- funkce: každá jako list přes celou šířku, střídavě porcelán / navy */
 .line-head { padding: clamp(64px, 9vw, 128px) 0 clamp(40px, 6vw, 72px); border-top: 1px solid var(--rule); }
 .line-head p { color: var(--ink-2); font-size: 1.125rem; max-width: 38rem; margin: 20px 0 0; }
 .spreads { list-style: none; margin: 0; padding: 0; }
 .spread { padding: clamp(56px, 8vw, 112px) 0; }
-.spread:nth-child(even) { background: var(--deep); color: var(--on-deep); }
+.spread-deep { background: var(--deep); color: var(--on-deep); }  /* každá druhá funkce na navy (třída z build.py, ne nth-child) */
 .spread-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
-.spread:nth-child(even) .spread-visual { order: 2; }
+.spread-deep .spread-visual { order: 2; }
 .spread-visual { display: flex; justify-content: center; container-type: inline-size; }
 .spread-phone .phone { width: min(100%, 340px); }
-.spread:nth-child(even) .phone { box-shadow: var(--phone-shadow-deep); }
+.spread-deep .phone { box-shadow: var(--phone-shadow-deep); }
 .spread h3 { font-size: clamp(2.2rem, 4.6vw, 4.2rem); }
 .spread .sub { font-size: 1.15rem; margin: 14px 0 0; color: var(--ink-2); }
-.spread:nth-child(even) .sub { color: var(--steel); }
+.spread-deep .sub { color: var(--steel); }
 .spread-text > p:last-child { max-width: 34rem; margin: 22px 0 0; }
-.spread:nth-child(even) .spread-text > p:last-child { color: var(--on-deep); }
+.spread-deep .spread-text > p:last-child { color: var(--on-deep); }
 @media (max-width: 820px) {
   .spread-grid { grid-template-columns: minmax(0, 1fr); }
-  .spread:nth-child(even) .spread-visual { order: 0; }
+  .spread-deep .spread-visual { order: 0; }
   .spread-phone .phone { width: min(68vw, 320px); }
 }
 
@@ -216,17 +234,17 @@ h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
 .ledger-row:last-child { border-bottom: 1px solid var(--rule); }
 .ledger dt { color: var(--ink-2); }
 .ledger dd { margin: 0; font: 800 clamp(1.5rem, 3vw, 2.6rem)/1 var(--display); font-variation-settings: "wdth" 108; letter-spacing: -.02em; white-space: nowrap; }
-.spread:nth-child(even) .ledger-row { border-color: rgba(255, 255, 255, .18); }
-.spread:nth-child(even) .ledger dt { color: var(--steel); }
+.spread-deep .ledger-row { border-color: rgba(255, 255, 255, .18); }
+.spread-deep .ledger dt { color: var(--steel); }
 
 .timeline { width: min(100%, 560px); list-style: none; margin: 0; padding: 0; font-family: var(--mono); font-size: clamp(.82rem, 1.8vw, .95rem); font-variant-numeric: tabular-nums; }
 .timeline li { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255, 255, 255, .18); }
 .timeline li:last-child { border-bottom: 1px solid rgba(255, 255, 255, .18); }
-.spread:nth-child(odd) .timeline li { border-color: var(--rule); }
+.spread:not(.spread-deep) .timeline li { border-color: var(--rule); }
 .tl-when { color: var(--steel); white-space: nowrap; }
-.spread:nth-child(odd) .tl-when { color: var(--ink-2); }
+.spread:not(.spread-deep) .tl-when { color: var(--ink-2); }
 .tl-removed { color: var(--steel-2); text-decoration: line-through; text-decoration-thickness: 1px; }
-.spread:nth-child(odd) .tl-removed { color: var(--ink-2); }
+.spread:not(.spread-deep) .tl-removed { color: var(--ink-2); }
 
 /* -------- textové sekce: jak to funguje, soukromí, jazyky */
 .how, .private, .langs { padding: clamp(64px, 9vw, 120px) 0 0; }
@@ -249,6 +267,7 @@ h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
 .get { margin-top: clamp(64px, 9vw, 120px); background: var(--deep); color: var(--on-deep); padding: clamp(64px, 9vw, 120px) 0; }
 .get-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px clamp(40px, 6vw, 96px); align-items: start; }
 .get h2 { max-width: 12ch; }
+.get .horizon { margin-bottom: 26px; }
 .get p { color: var(--steel); font-size: 1.125rem; max-width: 34rem; }
 .get a { color: var(--on-deep); }
 @media (max-width: 820px) { .get-grid { grid-template-columns: minmax(0, 1fr); } }
@@ -268,6 +287,7 @@ h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
 /* -------- patička */
 .site-footer { background: var(--porcelain-2); padding: 56px 0 64px; font-size: .92rem; color: var(--ink-2); }
 .footer-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 48px; align-items: start; }
+.footer-sail { display: block; color: var(--ink-2); margin-bottom: 18px; }
 .footer-brand { color: var(--ink); font: 800 1.1rem/1 var(--display); font-variation-settings: "wdth" 118; margin-bottom: 14px; }
 .footer-note { max-width: 40rem; margin: 0 0 10px; color: var(--ink); }
 .footer-tm { max-width: 40rem; margin: 0 0 6px; }

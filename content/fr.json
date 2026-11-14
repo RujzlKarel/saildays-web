@@ -13,6 +13,8 @@
   "hero_more": "Voir ce qu'elle fait",
   "hero_note": "Application Android gratuite. Sans compte, sans publicité. Vos navigations restent sur votre téléphone.",
   "hero_alt": "Journal Saildays en mode sombre avec la chronologie de la journée",
+  "photo_hero_alt": "Journal de bord Saildays sur un téléphone tenu dans le cockpit d'un voilier",
+  "photo_helm_alt": "Carte Saildays avec la trace du jour sur un téléphone fixé à côté du compas à la barre",
   "features_h2": "Ce qu'elle fait",
   "features_lead": "Appuyez sur Démarrer l'enregistrement en larguant les amarres. Saildays continue d'enregistrer écran éteint et sans réseau, et chaque entrée reçoit l'heure et la position. À votre retour, la navigation est déjà écrite.",
   "features": [

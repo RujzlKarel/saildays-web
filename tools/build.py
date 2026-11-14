@@ -65,13 +65,22 @@ FONT_URLS = {
     "archivo-latin.woff2": "https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLmvDIaI.woff2",
     "archivo-latin-ext.woff2": "https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdfoLmvDIaK18A.woff2",
 }
-# Snímky aplikace: pro DE/FR/ES zatím anglické (screenshoty v těch jazycích ještě nejsou)
+# Snímky aplikace: pro DE/FR/ES zatím anglické (screenshoty v těch jazycích ještě nejsou); platí i pro fotky photo-*
 SHOT_LANG = {"en": "en", "cs": "cs", "de": "en", "fr": "en", "es": "en"}
+# Za kterou funkcí (index v content features) je pás s fotkou telefonu u kormidla (mapa)
+BAND_AFTER = 2
 DASHES = re.compile("[–—]|&mdash;|&ndash;|&#821[12];")
 
 GLOBE_SVG = ('<svg class="globe" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" '
              'stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.6 2.6 '
              '3.9 5.6 3.9 9.2s-1.3 6.6-3.9 9.2M12 2.8C9.4 5.4 8.1 8.4 8.1 12s1.3 6.6 3.9 9.2"/></svg>')
+
+# Motiv lodě: plachta se sluncem a horizontem ze značky (jen patička), jinak jen „horizont" nad nadpisy sekcí (CSS .horizon)
+SAIL_SVG = ('<svg class="footer-sail" viewBox="0 0 56 44" width="56" height="44" aria-hidden="true" focusable="false">'
+            '<circle cx="17" cy="19" r="8" fill="var(--signal)"/>'
+            '<path d="M22 4v28h22C44 20 36 10 22 4z" fill="currentColor"/>'
+            '<path d="M8 40h40" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>')
+HORIZON = '<span class="horizon" aria-hidden="true"></span>'
 
 CONSENT_HEAD = """<!-- Consent Mode v2: default denied, volba z cookie saildays_consent se obnovuje pred nactenim GTM -->
 <script>
@@ -184,7 +193,7 @@ def t(ui, lang, key, **kw):
 
 # ---------------------------------------------------------------- kostra stránky
 
-def head_block(ctx, lang, slug, title, description, here, langs):
+def head_block(ctx, lang, slug, title, description, here, langs, preload=None):
     head = [
         '<meta charset="utf-8">',
         '<meta name="viewport" content="width=device-width, initial-scale=1">',
@@ -227,6 +236,9 @@ def head_block(ctx, lang, slug, title, description, here, langs):
     if lang in LATIN_EXT_LANGS:
         head.append('<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/archivo-latin-ext.woff2">')
     head.append('<link rel="stylesheet" href="/assets/site.css?v=%s">' % ctx["v"]["css"])
+    if preload:
+        # LCP fotka úvodu: preload se stejným srcset/sizes jako <img>, jinak prohlížeč stáhne jinou variantu
+        head.append('<link rel="preload" as="image" href="%s" imagesrcset="%s" imagesizes="%s" fetchpriority="high">' % preload)
     if CONFIG["analytics"]:
         head.append(CONSENT_HEAD % CONFIG["analytics"])
     else:
@@ -242,9 +254,10 @@ def gtm_noscript():
             "<!-- End Google Tag Manager (noscript) -->\n") % CONFIG["analytics"]
 
 
-def layout(ctx, lang, slug, title, description, main, body_class="", langs=None):
+def layout(ctx, lang, slug, title, description, main, body_class="", langs=None, preload=None):
     """Kostra stránky. `langs` = jazyky, ve kterých stránka existuje (hreflang, přepínač jen mezi nimi),
-    None = podle page_langs(slug), False = bez jazykových verzí (404)."""
+    None = podle page_langs(slug), False = bez jazykových verzí (404). `preload` = (href, imagesrcset, imagesizes)
+    LCP obrázku (jen úvod)."""
     ui = ctx["ui"]
     if langs is None:
         langs = page_langs(slug)
@@ -280,7 +293,7 @@ def layout(ctx, lang, slug, title, description, main, body_class="", langs=None)
              '<span>Saildays</span></a>') % (esc(path_for(lang)), ctx["v"]["icon"])
     footer = (
         '<footer class="site-footer"><div class="wrap footer-grid">'
-        '<div><p class="footer-brand">Saildays</p><p class="footer-note">%s</p>'
+        '<div>' + SAIL_SVG + '<p class="footer-brand">Saildays</p><p class="footer-note">%s</p>'
         '<p class="footer-tm">&copy; 2026 Nice One s.r.o., Brno</p>'
         '<p class="footer-tm">%s</p></div>'
         '<div class="footer-nav"><nav aria-label="Footer">%s%s</nav>%s</div>'
@@ -297,23 +310,45 @@ def layout(ctx, lang, slug, title, description, main, body_class="", langs=None)
         '<header class="site-header"><div class="wrap header-row">%s'
         '<nav class="nav" aria-label="Main">%s</nav></div></header>\n'
         '<main id="main">\n%s\n</main>\n%s\n%s\n</body>\n</html>\n'
-    ) % (lang, head_block(ctx, lang, slug, title, description, here, langs if langs else None),
+    ) % (lang, head_block(ctx, lang, slug, title, description, here, langs if langs else None, preload),
          ' class="%s"' % body_class if body_class else "", gtm_noscript(), esc(t(ui, lang, "skip")),
          brand, nav, main, footer, cookie)
 
 
 # ---------------------------------------------------------------- stavební kameny úvodu
 
-def phone(ctx, lang, name, alt, priority=False):
-    """Telefon se skutečným snímkem aplikace (img/shot-<name>-<jazyk>.webp) v CSS rámečku."""
-    fname = "shot-%s-%s.webp" % (name, SHOT_LANG[lang])
+def phone(ctx, lang, name, alt):
+    """Telefon se skutečným snímkem aplikace (img/shot-<name>-<jazyk>.webp, 540x1200) v CSS rámečku (listy funkcí)."""
+    return '<div class="phone"><img src="%s" width="540" height="1200" alt="%s" loading="lazy" decoding="async"></div>' % (
+        img_path("shot-%s-%s.webp" % (name, SHOT_LANG[lang])), esc(alt))
+
+
+def img_path(fname):
     path = os.path.join(ROOT, "img", fname)
     if not os.path.exists(path):
-        raise BuildError("chybí img/%s" % fname)
-    w, h = (540, 1080) if name == "hero" else (540, 1200)
-    return ('<div class="phone"><img src="/img/%s?v=%s" width="%d" height="%d" alt="%s" '
-            '%s decoding="async"></div>') % (
-        fname, file_hash(path), w, h, esc(alt), 'fetchpriority="high"' if priority else 'loading="lazy"')
+        raise BuildError("chybí img/%s (tools/photos.sh)" % fname)
+    return "/img/%s?v=%s" % (fname, file_hash(path))
+
+
+def photo_hero(ctx, lang, alt):
+    """Fotka úvodu: telefon v ruce v kokpitu se skutečným snímkem deníku (tools/photos.sh -> img/photo-hero-<jazyk>.webp).
+    Vrací (html, preload) - preload má stejný srcset a sizes, ať prohlížeč stáhne tutéž variantu."""
+    l = SHOT_LANG[lang]
+    big, small = img_path("photo-hero-%s.webp" % l), img_path("photo-hero-%s-480.webp" % l)
+    srcset = "%s 780w, %s 480w" % (big, small)
+    sizes = "(max-width: 820px) 100vw, 46vw"
+    html_ = ('<div class="hero-photo"><img src="%s" srcset="%s" sizes="%s" width="780" height="1170" alt="%s" '
+             'loading="eager" fetchpriority="high" decoding="async"></div>') % (big, srcset, sizes, esc(alt))
+    return html_, (big, srcset, sizes)
+
+
+def photo_band(ctx, lang, alt):
+    """Pás přes celou šířku: telefon v držáku u kompasu s mapou dne; na mobilu užší výřez kolem telefonu."""
+    l = SHOT_LANG[lang]
+    wide, narrow = img_path("photo-helm-%s.webp" % l), img_path("photo-helm-%s-m.webp" % l)
+    return ('<figure class="band"><picture><source media="(max-width: 820px)" srcset="%s" width="640" height="731">'
+            '<img src="%s" width="1400" height="933" alt="%s" loading="lazy" decoding="async"></picture></figure>') % (
+        narrow, wide, esc(alt))
 
 
 def paper(ui, lang):
@@ -354,19 +389,25 @@ def feature_spread(ctx, lang, f, i):
     else:
         raise BuildError("neznámý visual %s" % v)
     sub = '<p class="sub">%s</p>' % esc(f["sub"]) if f["sub"] else ""
+    # střídání porcelán / navy podle pořadí funkce (ne nth-child: seznam je kvůli pásu s fotkou rozdělený na dva <ol>)
     return (
-        '<li class="spread spread-%s" id="%s"><div class="wrap spread-grid">'
+        '<li class="spread spread-%s%s" id="%s"><div class="wrap spread-grid">'
         '<div class="spread-visual">%s</div>'
         '<div class="spread-text"><h3>%s</h3>%s<p>%s</p></div>'
         "</div></li>"
-    ) % (kind, esc(f["id"]), visual, esc(f["title"]), sub, f["text"])
+    ) % (kind, " spread-deep" if i % 2 else "", esc(f["id"]), visual, esc(f["title"]), sub, f["text"])
 
 
 def page_home(ctx, lang):
     ui = ctx["ui"]
     L = ui[lang]
-    spreads = "".join(feature_spread(ctx, lang, f, i) for i, f in enumerate(L["features"]))
-    steps = "".join('<li><h3>%s</h3><p>%s</p></li>' % (esc(s["title"]), s["text"]) for s in L["steps"])
+    spreads = [feature_spread(ctx, lang, f, i) for i, f in enumerate(L["features"])]
+    # pás s fotkou (telefon u kormidla s mapou) za listem mapy; druhý <ol> pokračuje v číslování
+    cut = BAND_AFTER + 1
+    spreads_html = ('<ol class="spreads">%s</ol>\n%s\n<ol class="spreads" start="%d">%s</ol>' % (
+        "".join(spreads[:cut]), photo_band(ctx, lang, L["photo_helm_alt"]), cut + 1, "".join(spreads[cut:])))
+    hero_photo, preload = photo_hero(ctx, lang, L["photo_hero_alt"])
+    steps ="".join('<li><h3>%s</h3><p>%s</p></li>' % (esc(s["title"]), s["text"]) for s in L["steps"])
     priv = "".join('<li><strong>%s</strong> %s</li>' % (esc(p["strong"]), p["text"]) for p in L["privacy_items"])
     priv_l = link_lang(lang, "privacy")
     priv_link = '<a href="%s"%s>%s%s</a>' % (esc(path_for(priv_l, "privacy")), ' hreflang="en"' if priv_l != lang else "",
@@ -380,26 +421,26 @@ def page_home(ctx, lang):
         '<div class="hero-copy"><p>%(lead)s</p>'
         '<p class="act"><a class="btn btn-primary" href="#get">%(cta)s</a><a class="more" href="#features">%(more)s</a></p>'
         '<p class="note">%(note)s</p></div></div>'
-        '<div class="hero-phone">%(phone)s</div>'
+        '%(photo)s'
         "</div></section>\n"
-        '<section class="line-head" id="features"><div class="wrap"><h2>%(f_h2)s</h2><p>%(f_lead)s</p></div></section>\n'
-        '<ol class="spreads">%(spreads)s</ol>\n'
-        '<section class="how" id="how"><div class="wrap"><h2>%(how_h2)s</h2><ol class="steps">%(steps)s</ol></div></section>\n'
-        '<section class="private" id="privacy"><div class="wrap"><h2>%(p_h2)s</h2><ul class="claims">%(priv)s</ul>'
+        '<section class="line-head" id="features"><div class="wrap">%(hz)s<h2>%(f_h2)s</h2><p>%(f_lead)s</p></div></section>\n'
+        '%(spreads)s\n'
+        '<section class="how" id="how"><div class="wrap">%(hz)s<h2>%(how_h2)s</h2><ol class="steps">%(steps)s</ol></div></section>\n'
+        '<section class="private" id="privacy"><div class="wrap">%(hz)s<h2>%(p_h2)s</h2><ul class="claims">%(priv)s</ul>'
         '<p class="note">%(p_note)s</p></div></section>\n'
-        '<section class="langs" id="languages"><div class="wrap"><h2>%(l_h2)s</h2><p>%(l_text)s</p>'
+        '<section class="langs" id="languages"><div class="wrap">%(hz)s<h2>%(l_h2)s</h2><p>%(l_text)s</p>'
         '<p class="lang-list">%(l_list)s</p></div></section>\n'
-        '<section class="get" id="get"><div class="wrap get-grid"><h2>%(g_h2)s</h2><div><p>%(g_text)s</p>'
+        '<section class="get" id="get"><div class="wrap get-grid"><div>%(hz)s<h2>%(g_h2)s</h2></div><div><p>%(g_text)s</p>'
         '</div></div></section>'
     ) % {
         "h1": esc(L["hero_h1"]), "lead": L["hero_lead"], "cta": esc(L["hero_cta"]), "more": esc(L["hero_more"]),
-        "note": esc(L["hero_note"]), "phone": phone(ctx, lang, "hero", L["hero_alt"], priority=True),
-        "f_h2": esc(L["features_h2"]), "f_lead": L["features_lead"], "spreads": spreads,
+        "note": esc(L["hero_note"]), "photo": hero_photo, "hz": HORIZON,
+        "f_h2": esc(L["features_h2"]), "f_lead": L["features_lead"], "spreads": spreads_html,
         "how_h2": esc(L["how_h2"]), "steps": steps, "p_h2": esc(L["privacy_h2"]), "priv": priv,
         "p_note": t(ui, lang, "privacy_note", privacy=priv_link), "l_h2": esc(L["langs_h2"]), "l_text": L["langs_text"],
         "l_list": langs_list, "g_h2": esc(L["get_h2"]), "g_text": L["get_text"],
     }
-    return layout(ctx, lang, "", L["title"], L["description"], main, body_class="page-home")
+    return layout(ctx, lang, "", L["title"], L["description"], main, body_class="page-home", preload=preload)
 
 
 def page_privacy(ctx, lang):

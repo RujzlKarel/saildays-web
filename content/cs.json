@@ -13,6 +13,8 @@
   "hero_more": "Co všechno umí",
   "hero_note": "Aplikace pro Android zdarma. Bez účtu a bez reklam. Plavby zůstávají v telefonu.",
   "hero_alt": "Deník Saildays v tmavém režimu s časovou osou dne",
+  "photo_hero_alt": "Deník Saildays na telefonu v ruce v kokpitu plachetnice",
+  "photo_helm_alt": "Mapa Saildays s trasou dne na telefonu v držáku u kompasu u kormidla",
   "features_h2": "Co umí",
   "features_lead": "Při vyplutí klepnete na Zahájit nahrávání. Saildays nahrává i se zhasnutým displejem a bez signálu a každý zápis dostane čas a polohu. Když se vrátíte, plavba už je zapsaná.",
   "features": [
