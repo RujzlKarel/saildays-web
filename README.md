@@ -19,7 +19,7 @@ Statický web aplikace Saildays pro Android (`https://saildays.app`): úvodní s
 
 Pak `http://localhost:8766/` (cesty jsou od kořene, proto server spouštět v `dist/`). Pro screenshoty a lokální prohlížení stavět s `SAILDAYS_ANALYTICS= python3 tools/build.py`, jinak stránka načte GTM a po odsouhlasení cookie lišty posílá hity do GA4. Stavba potřebuje jen Python 3.8+; při prvním běhu stáhne písmo (viz Písmo).
 
-**Soubory v kořeni repa** (`index.html`, `cs/`, `privacy/`, `cs/privacy/`, `404.html`, `.htaccess`) jsou starý web z hostingu Blueboard (do 14. 11. 2026). Nemění se a smažou se, až doménu prokazatelně obsluhuje Cloudflare; pak zůstane jen `tools/build.py` + `content/`.
+Starý ručně psaný web z hostingu Blueboard (do 14. 11. 2026) je smazaný; od té doby existuje jen `tools/build.py` + `content/` a hosting Cloudflare Pages. Ikony, `robots.txt` a `site.webmanifest` v kořeni jsou zdroje, které build kopíruje do `dist/`.
 
 ## Jazyky a texty
 
