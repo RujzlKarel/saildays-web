@@ -5,22 +5,52 @@
 (function () {
 var COOKIE_KEY = 'saildays_consent';
 var COOKIE_DAYS = 365;
-var cs = (document.documentElement.lang || '').toLowerCase().indexOf('cs') === 0;
-var T = cs ? {
-  label: 'Souhlas s cookies',
-  text: 'Cookies používáme jen pro anonymní analytiku, a to až po vašem souhlasu.',
-  more: 'Více v zásadách ochrany soukromí',
-  privacy: '/cs/privacy/',
-  accept: 'Přijmout vše',
-  decline: 'Jen nezbytné'
-} : {
-  label: 'Cookie consent',
-  text: 'We use cookies for anonymous analytics only after you agree.',
-  more: 'More in the privacy policy',
-  privacy: '/privacy/',
-  accept: 'Accept all',
-  decline: 'Only necessary'
+var lang = (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
+// Texty podle <html lang>; de, fr, es jsou strojovy preklad bez rodileho korektora (14. 11. 2026).
+// Zasady jsou jen anglicky a cesky, v de/fr/es vede odkaz na anglicke s "(EN)".
+var TEXTS = {
+  en: {
+    label: 'Cookie consent',
+    text: 'We use cookies for anonymous analytics only after you agree.',
+    more: 'More in the privacy policy',
+    privacy: '/privacy/',
+    accept: 'Accept all',
+    decline: 'Only necessary'
+  },
+  cs: {
+    label: 'Souhlas s cookies',
+    text: 'Cookies používáme jen pro anonymní analytiku, a to až po vašem souhlasu.',
+    more: 'Více v zásadách ochrany soukromí',
+    privacy: '/cs/privacy/',
+    accept: 'Přijmout vše',
+    decline: 'Jen nezbytné'
+  },
+  de: {
+    label: 'Cookie-Einwilligung',
+    text: 'Wir verwenden Cookies nur für anonyme Statistiken und erst nach deiner Zustimmung.',
+    more: 'Mehr in der Datenschutzerklärung (EN)',
+    privacy: '/privacy/',
+    accept: 'Alle akzeptieren',
+    decline: 'Nur notwendige'
+  },
+  fr: {
+    label: 'Consentement aux cookies',
+    text: 'Nous utilisons des cookies uniquement pour des statistiques anonymes, et seulement après votre accord.',
+    more: 'En savoir plus dans la politique de confidentialité (EN)',
+    privacy: '/privacy/',
+    accept: 'Tout accepter',
+    decline: 'Nécessaires uniquement'
+  },
+  es: {
+    label: 'Consentimiento de cookies',
+    text: 'Usamos cookies solo para estadísticas anónimas y únicamente después de tu consentimiento.',
+    more: 'Más en la política de privacidad (EN)',
+    privacy: '/privacy/',
+    accept: 'Aceptar todo',
+    decline: 'Solo necesarias'
+  }
 };
+var T = TEXTS[lang] || TEXTS.en;
 var CSS =
 '#cookie-banner{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:16px;background:rgba(11,58,92,.32);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;transition:opacity .25s ease}' +
 '#cookie-banner.cookie-banner--visible{opacity:1}' +
