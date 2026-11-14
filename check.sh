@@ -123,7 +123,7 @@ for f in $pages; do
     'property="og:type" content="website"' 'name="twitter:card" content="summary_large_image"'; do
     [ "$f" = "$D/404.html" ] || need "$f" "$p"
   done
-  for p in 'href="/favicon.ico"' 'href="/apple-touch-icon.png"' 'href="/site.webmanifest"' \
+  for p in 'href="/favicon.ico?v=' 'href="/apple-touch-icon.png?v=' 'href="/site.webmanifest"' \
     "gtm.js?id='+i+dl" "'dataLayer','$GTM_ID'" "ns.html?id=$GTM_ID" "gtag('consent', 'default'" "wait_for_update: 500" \
     'saildays_consent=' 'src="/js/cookie-consent.js'; do
     need "$f" "$p"
