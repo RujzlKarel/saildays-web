@@ -226,10 +226,11 @@ def head_block(ctx, lang, slug, title, description, here, langs, preload=None):
         '<meta name="twitter:title" content="%s">' % esc(title),
         '<meta name="twitter:description" content="%s">' % esc(description),
         '<meta name="twitter:image" content="%s">' % esc(og),
-        '<link rel="icon" href="/favicon.ico" sizes="32x32">',
-        '<link rel="icon" type="image/svg+xml" href="/img/icon.svg">',
-        '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">',
-        '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+        # otisk i u ikon: /img/* a kořenové soubory drží cache 7 dní, bez ?v= by po výměně značky zůstala stará favicona
+        '<link rel="icon" href="/favicon.ico?v=%s" sizes="32x32">' % ctx["v"]["ico"],
+        '<link rel="icon" type="image/svg+xml" href="/img/icon.svg?v=%s">' % ctx["v"]["icon"],
+        '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=%s">' % ctx["v"]["ico"],
+        '<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=%s">' % ctx["v"]["ico"],
         '<link rel="manifest" href="/site.webmanifest">',
         '<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/archivo-latin.woff2">',
     ]
@@ -531,6 +532,7 @@ def build():
         "css": file_hash(os.path.join(ASSETS, "site.css")),
         "cookie": file_hash(os.path.join(ROOT, "js", "cookie-consent.js")),
         "icon": file_hash(os.path.join(ROOT, "img", "icon.svg")),
+        "ico": file_hash(os.path.join(ROOT, "img", "icon-512.png")),  # všechny PNG/ICO favicony jsou z téhož zdroje
         "og": file_hash(os.path.join(ROOT, "img", "og.png")),
     }}
     pages = []

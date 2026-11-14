@@ -85,7 +85,7 @@ Ve složce `img/`:
 | `photo-helm-<jazyk>.webp`, `photo-helm-<jazyk>-m.webp` | pás ve funkcích: telefon v držáku u kompasu, v displeji `02-map.png`; 1400×933 a mobilní výřez 640×731 |
 | `shot-<obrazovka>-<jazyk>.webp` | screenshoty `log`, `map`, `note`, `export` × `en`, `cs`; 540×1200 v CSS rámečku telefonu |
 
-DE, FR a ES zatím ukazují anglické screenshoty i fotky (`SHOT_LANG` v `build.py`); až budou snímky v těch jazycích, stačí je přidat jako `shot-<obrazovka>-<jazyk>.webp`, pustit `tools/photos.sh <jazyk>` a rozšířit `SHOT_LANG`. Build přidává k obrázkům otisk obsahu (`?v=`), takže se cache po výměně snímku obnoví sama.
+DE, FR a ES zatím ukazují anglické screenshoty i fotky (`SHOT_LANG` v `build.py`); až budou snímky v těch jazycích, stačí je přidat jako `shot-<obrazovka>-<jazyk>.webp`, pustit `tools/photos.sh <jazyk>` a rozšířit `SHOT_LANG`. Build přidává k obrázkům i faviconám otisk obsahu (`?v=`), takže se cache (7 dní na `/img/*`) po výměně snímku nebo značky obnoví sama; holé `/img/icon.svg` bez `?v=` může Cloudflare vracet staré až týden.
 
 ## Screenshoty
 
