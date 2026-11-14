@@ -37,7 +37,11 @@ expect 200 "$BASE/assets/site.css"
 expect 200 "$BASE/assets/fonts/archivo-latin.woff2"
 expect '403|404' "$BASE/_headers"
 curl -s --max-time 15 "$BASE/neexistuje-xyz" | grep -q "Page not found" || { echo "404 nevraci vlastni stranku"; exit 1; }
-if [ "$BRANCH" = main ] && curl -s -o /dev/null --max-time 10 https://saildays.app/; then
+# www presmerovani se kontroluje az kdyz saildays.app obsluhuje Cloudflare (po prepnuti NS u registratora).
+if [ "$BRANCH" = main ] && curl -sI --max-time 10 https://saildays.app/ | grep -qi "^server: cloudflare"; then
   expect 301 https://www.saildays.app/
+  expect 200 https://saildays.app/
+else
+  [ "$BRANCH" = main ] && echo "saildays.app zatim neobsluhuje Cloudflare, kontrola www preskocena"
 fi
 echo "deploy OK: $BASE"

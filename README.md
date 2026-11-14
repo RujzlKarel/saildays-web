@@ -19,7 +19,7 @@ Statický web aplikace Saildays pro Android (`https://saildays.app`): úvodní s
 
 Pak `http://localhost:8766/` (cesty jsou od kořene, proto server spouštět v `dist/`). Pro screenshoty a lokální prohlížení stavět s `SAILDAYS_ANALYTICS= python3 tools/build.py`, jinak stránka načte GTM a po odsouhlasení cookie lišty posílá hity do GA4. Stavba potřebuje jen Python 3.8+; při prvním běhu stáhne písmo (viz Písmo).
 
-**Produkční soubory v kořeni repa** (`index.html`, `cs/`, `privacy/`, `cs/privacy/`, `404.html`, `.htaccess`) jsou dosavadní web na Blueboardu. Nemění se a smažou se po přepnutí domény na Cloudflare; pak je nahradí jen `tools/build.py` + `content/`.
+**Soubory v kořeni repa** (`index.html`, `cs/`, `privacy/`, `cs/privacy/`, `404.html`, `.htaccess`) jsou starý web z hostingu Blueboard (do 14. 11. 2026). Nemění se a smažou se, až doménu prokazatelně obsluhuje Cloudflare; pak zůstane jen `tools/build.py` + `content/`.
 
 ## Jazyky a texty
 
@@ -44,10 +44,10 @@ Stránky s češtinou předloadují i `latin-ext` (`LATIN_EXT_LANGS`).
 
 ## Nasazení (Cloudflare Pages)
 
-Projekt `saildays` v účtu Nice One (account `d8760638176f5e319063e9e5369dbfd8`), token `~/.config/cloudflare/hosting-token`. Doménu `saildays.app`, DNS a mail spravuje zatím Blueboard; po přepnutí DNS na Pages se produkční web přesune sem.
+Projekt `saildays` v účtu Nice One (account `d8760638176f5e319063e9e5369dbfd8`), token `~/.config/cloudflare/hosting-token`. Redesign je v produkci (branch `main`) od 14. 11. 2026. DNS zóna `saildays.app` je na Cloudflare (CNAME na `saildays.pages.dev`, mail se nepoužívá: bez MX, SPF `v=spf1 -all`, DMARC reject); změna nameserverů u registrátora (Blueboard, Administrace → Moje domény → saildays.app → DNS servery) zažádána 14. 11. 2026, registrace domény se převádí ke Cloudflare od 11. 12. 2026 (ICANN 60 dní). Postup v `~/GitHub/Saildays/docs/vydani.md`.
 
     ./deploy.sh preview   # náhled: branch redesign -> https://redesign.saildays.pages.dev
-    ./deploy.sh           # produkce: branch main -> https://saildays.pages.dev (po přepnutí DNS https://saildays.app)
+    ./deploy.sh           # produkce: branch main -> https://saildays.pages.dev = https://saildays.app
 
 `deploy.sh` postaví web, spustí `check.sh`, nahraje `dist/` přes `npx wrangler@4 pages deploy` a ověří, že všech 7 stránek vrací 200, neexistující stránka 404 s vlastní stránkou, `robots.txt`, `sitemap.xml`, manifest, ikony, `js/cookie-consent.js`, styl a písmo 200, `_headers` se nevydává a (jen na produkční doméně, až poběží) `www` přesměruje 301. Náhledy na `*.pages.dev` dostávají od Cloudflare `X-Robots-Tag: noindex` samy, stránky proto žádné `noindex` nemají a canonical míří rovnou na `https://saildays.app/…`.
 
