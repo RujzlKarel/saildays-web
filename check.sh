@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Kontrola vygenerovaneho webu v dist/ (tools/build.py): uvodni stranky v 5 jazycich, zasady (en + cs) a 404.
 # Jazyk, hreflang, odkazy, kontakt, klicova fakta zasad, jen povolene skripty (consent blok + GTM + /js/cookie-consent.js),
-# jen lokalni styl, og:*, favicony, robots/sitemap/_headers/_redirects, existence obrazku, stejne sekce a obrazky
+# jen lokalni styl, og:*, favicony, robots/sitemap/_headers/_worker.js, existence obrazku, stejne sekce a obrazky
 # ve vsech jazycich, zadne dlouhe pomlcky. Spousti se po `python3 tools/build.py`; deploy.sh ho vola sam.
 GTM_ID=GTM-5BL8T5LD
 LANGS="en cs de fr es"
@@ -19,7 +19,8 @@ en=$D/privacy/index.html; cs=$D/cs/privacy/index.html
 [ -f "$cs" ] || bad "chybi $cs"
 for f in "$en" "$cs"; do
   [ -f "$f" ] || continue
-  need "$f" "info@nice-one.cz"
+  need "$f" "nice-one.cz"
+  grep -q -E "@nice-one|mailto:" "$f" && bad "$f obsahuje e-mail (rozhodnuti 14. 11. 2026: zadna adresa na webu, spam)"
   need "$f" "GPX"
   need "$f" "Google Analytics"
   need "$f" "saildays_consent"
@@ -59,7 +60,7 @@ for l in $LANGS; do
   need "$f" 'hreflang="x-default" href="https://saildays.app/"'
   need "$f" 'name="description"'
   need "$f" 'rel="icon"'
-  need "$f" 'mailto:info@nice-one.cz'
+  grep -q -E "@nice-one|mailto:" "$f" && bad "$f obsahuje e-mail (rozhodnuti 14. 11. 2026: zadna adresa na webu, spam)"
   need "$f" 'Nice One s.r.o.'
   need "$f" 'Map data &copy; OpenStreetMap contributors, OpenMapTiles, OpenFreeMap, OpenSeaMap'
   need "$f" 'href="#get"'; need "$f" 'id="get"'
@@ -91,7 +92,7 @@ for f in img/*.webp; do
   [ "$(wc -c < "$f")" -le 153600 ] || bad "$f je vetsi nez 150 kB"
 done
 # Soubory kolem webu (Cloudflare Pages: _headers a _redirects misto .htaccess)
-for f in 404.html robots.txt sitemap.xml _headers _redirects site.webmanifest favicon.ico favicon-32x32.png apple-touch-icon.png \
+for f in 404.html robots.txt sitemap.xml _headers _worker.js site.webmanifest favicon.ico favicon-32x32.png apple-touch-icon.png \
   img/icon-192.png img/icon-512.png img/icon.svg js/cookie-consent.js assets/site.css assets/fonts/archivo-latin.woff2 \
   assets/fonts/archivo-latin-ext.woff2; do
   [ -s "$D/$f" ] || bad "chybi $D/$f"
@@ -101,7 +102,8 @@ for l in $LANGS; do need "$D/sitemap.xml" "<loc>https://saildays.app$(prefix "$l
 for u in /privacy/ /cs/privacy/; do need "$D/sitemap.xml" "<loc>https://saildays.app$u</loc>"; done
 [ "$(grep -c '<loc>' "$D/sitemap.xml")" = 7 ] || bad "sitemap nema 7 stranek"
 need "$D/sitemap.xml" 'hreflang="cs"'; need "$D/sitemap.xml" 'hreflang="es"'
-need "$D/_redirects" "https://www.saildays.app/\* https://saildays.app/:splat 301"
+need "$D/_worker.js" 'url.hostname === "www.saildays.app"'
+need "$D/_worker.js" "env.ASSETS.fetch"
 need "$D/_headers" "/img/\*"
 need "$D/404.html" 'href="/"'; need "$D/404.html" 'href="/cs/"'; need "$D/404.html" "noindex"
 for l in en cs de fr es; do need "$D/js/cookie-consent.js" "$l: {"; done

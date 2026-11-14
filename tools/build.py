@@ -5,7 +5,7 @@ Texty bere z content/<jazyk>.json (EN, CS, DE, FR, ES; stejné klíče a délky 
 zásady z content/privacy/<jazyk>.html (jen EN a CS), styl z assets/site.css, písmo Archivo z assets/fonts/
 (woff2 z Google Fonts, OFL; mimo git, při prvním běhu se stáhne), obrázky z img/, cookie lištu z js/.
 Výstup: dist/index.html, dist/<jazyk>/index.html, dist/privacy/, dist/cs/privacy/, 404.html, robots.txt,
-sitemap.xml, _headers, _redirects, ikony, manifest.
+sitemap.xml, _headers, _worker.js (www -> bez www), ikony, manifest.
 
 Jen standardní knihovna Pythonu.
 
@@ -31,12 +31,23 @@ DIST = os.path.join(ROOT, "dist")
 
 CONFIG = {
     "site_url": os.environ.get("SAILDAYS_SITE_URL", "https://saildays.app"),
-    "contact_email": "info@nice-one.cz",
     # GTM s Consent Mode v2 (README, sekce Měření a cookies). Prázdné SAILDAYS_ANALYTICS= měření vypne.
     "analytics": os.environ.get("SAILDAYS_ANALYTICS", "GTM-5BL8T5LD") or None,
     "og_image": "/img/og.png",
     "theme_color": "#0b3a5c",
 }
+
+WORKER_JS = """export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.hostname === "www.saildays.app") {
+      url.hostname = "saildays.app";
+      return Response.redirect(url.toString(), 301);
+    }
+    return env.ASSETS.fetch(request);
+  },
+};
+"""
 
 LANGS = ["en", "cs", "de", "fr", "es"]
 # Stránky, které nejsou ve všech jazycích; z ostatních jazyků vede odkaz na anglickou verzi s „(EN)"
@@ -270,14 +281,13 @@ def layout(ctx, lang, slug, title, description, main, body_class="", langs=None)
     footer = (
         '<footer class="site-footer"><div class="wrap footer-grid">'
         '<div><p class="footer-brand">Saildays</p><p class="footer-note">%s</p>'
-        '<p class="footer-tm">&copy; 2026 Nice One s.r.o., Brno &middot; <a href="mailto:%s">%s</a></p>'
+        '<p class="footer-tm">&copy; 2026 Nice One s.r.o., Brno</p>'
         '<p class="footer-tm">%s</p></div>'
-        '<div class="footer-nav"><nav aria-label="Footer">%s%s<a href="mailto:%s">%s</a></nav>%s</div>'
+        '<div class="footer-nav"><nav aria-label="Footer">%s%s</nav>%s</div>'
         "</div></footer>"
-    ) % (esc(t(ui, lang, "footer_disclaimer")), esc(CONFIG["contact_email"]), esc(CONFIG["contact_email"]), MAP_ATTR,
+    ) % (esc(t(ui, lang, "footer_disclaimer")), MAP_ATTR,
          '<a href="%s">%s</a>' % (esc(path_for(lang) + "#features"), esc(t(ui, lang, "nav_features"))),
          page_link("privacy", t(ui, lang, "footer_privacy")),
-         esc(CONFIG["contact_email"]), esc(t(ui, lang, "footer_contact")),
          ('<nav class="footer-langs" aria-label="%s">%s</nav>' % (esc(t(ui, lang, "lang_label")), "".join(footer_langs)))
          if footer_langs else "")
     cookie = '<script src="/js/cookie-consent.js?v=%s"></script>' % ctx["v"]["cookie"]
@@ -361,7 +371,6 @@ def page_home(ctx, lang):
     priv_l = link_lang(lang, "privacy")
     priv_link = '<a href="%s"%s>%s%s</a>' % (esc(path_for(priv_l, "privacy")), ' hreflang="en"' if priv_l != lang else "",
                                              esc(L["privacy_link"]), " (EN)" if priv_l != lang else "")
-    email = '<a href="mailto:%s">%s</a>' % (esc(CONFIG["contact_email"]), esc(CONFIG["contact_email"]))
     langs_list = " &middot; ".join('<span lang="%s">%s</span>' % (c, esc(n)) if c else esc(n) for n, c in
                                    zip(APP_LANGUAGES, ["en", "cs", "de", "fr", "es", "it", "nl", "pl", "pt", "da", "sv",
                                                        "nb", "fi", "sk", "hr", "sl", "el", "tr", "hu", "ja", "ko"]))
@@ -381,7 +390,7 @@ def page_home(ctx, lang):
         '<section class="langs" id="languages"><div class="wrap"><h2>%(l_h2)s</h2><p>%(l_text)s</p>'
         '<p class="lang-list">%(l_list)s</p></div></section>\n'
         '<section class="get" id="get"><div class="wrap get-grid"><h2>%(g_h2)s</h2><div><p>%(g_text)s</p>'
-        '<p>%(g_contact)s</p></div></div></section>'
+        '</div></div></section>'
     ) % {
         "h1": esc(L["hero_h1"]), "lead": L["hero_lead"], "cta": esc(L["hero_cta"]), "more": esc(L["hero_more"]),
         "note": esc(L["hero_note"]), "phone": phone(ctx, lang, "hero", L["hero_alt"], priority=True),
@@ -389,7 +398,6 @@ def page_home(ctx, lang):
         "how_h2": esc(L["how_h2"]), "steps": steps, "p_h2": esc(L["privacy_h2"]), "priv": priv,
         "p_note": t(ui, lang, "privacy_note", privacy=priv_link), "l_h2": esc(L["langs_h2"]), "l_text": L["langs_text"],
         "l_list": langs_list, "g_h2": esc(L["get_h2"]), "g_text": L["get_text"],
-        "g_contact": t(ui, lang, "get_contact", email=email),
     }
     return layout(ctx, lang, "", L["title"], L["description"], main, body_class="page-home")
 
@@ -494,7 +502,9 @@ def build():
     write(os.path.join(DIST, "404.html"), page_404(ctx))
     write(os.path.join(DIST, "sitemap.xml"), sitemap(pages))
     write(os.path.join(DIST, "_headers"), headers_file([path_for(l, s) for l, s in pages] + ["/404.html"]))
-    write(os.path.join(DIST, "_redirects"), "https://www.saildays.app/* https://saildays.app/:splat 301\n")
+    # www -> bez www: _redirects v Pages neumi presmerovani podle hostu a pravidla zony by chtela dalsi opravneni tokenu,
+    # proto maly Pages Worker (advanced mode); vse ostatni obslouzi staticke soubory vcetne _headers a 404.html.
+    write(os.path.join(DIST, "_worker.js"), WORKER_JS)
     # kontrola pomlček ve výstupu
     for dp, _, files in os.walk(DIST):
         for f in files:
