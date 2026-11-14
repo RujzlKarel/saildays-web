@@ -66,7 +66,19 @@ def fill_component(dark, seed):
             raise SystemExit("semínko displeje neleží v tmavé ploše")
         sx, sy = xs[0] + max(0, sx - 30), ys[0] + max(0, sy - 30)
     ImageDraw.floodfill(img, (int(sx), int(sy)), 128)
-    return np.asarray(img) == 128
+    comp = np.asarray(img) == 128
+    # morfologické otevření: odřízne tenké tmavé přívěsky (stín mezi prsty, lem rámečku), které by posunuly rohy
+    ys, xs = np.nonzero(comp)
+    k = max(3, int(0.02 * (xs.max() - xs.min())))
+    k += 1 - k % 2
+    m = Image.fromarray(np.where(comp, 255, 0).astype(np.uint8)).filter(ImageFilter.MinFilter(k)).filter(ImageFilter.MaxFilter(k)).copy()
+    # po otevření znovu jen souvislá část kolem semínka (odříznuté přívěsky, např. čelisti držáku, zůstaly jako ostrůvky)
+    opened = np.asarray(m) > 127
+    sy2, sx2 = np.nonzero(opened)
+    if not opened[sy, sx]:
+        j = np.argmin((sx2 - sx) ** 2 + (sy2 - sy) ** 2); sx, sy = sx2[j], sy2[j]
+    ImageDraw.floodfill(m, (int(sx), int(sy)), 128)
+    return np.asarray(m) == 128
 
 
 def boundary(mask):
@@ -96,22 +108,26 @@ def intersect(l1, l2):
     return p1 + t[0] * d1
 
 
-def refine_corners(pts, corners, band=0.15, tol=None):
-    """Hrany mezi rohy proložit přímkami ze středních 70 % obrysu (rohy jsou zaoblené), rohy = průsečíky."""
-    lines = []
-    for i in range(4):
-        a, b = corners[i], corners[(i + 1) % 4]
-        d = b - a; L = np.linalg.norm(d); d /= L
-        n = np.array([-d[1], d[0]])
-        rel = pts - a
-        t = (rel * d).sum(1) / L
-        dist = np.abs((rel * n).sum(1))
-        tol_i = tol if tol else max(4.0, 0.03 * L)
-        sel = (t > band) & (t < 1 - band) & (dist < tol_i)
-        if sel.sum() < 10:
-            raise SystemExit("hrana %d: málo bodů obrysu (%d), zadej --corners" % (i, sel.sum()))
-        lines.append(fit_line(pts[sel]))
-    sharp = np.array([intersect(lines[(i - 1) % 4], lines[i]) for i in range(4)])
+def refine_corners(pts, corners, band=0.15, passes=2):
+    """Hrany mezi rohy proložit přímkami ze středních 70 % obrysu (rohy jsou zaoblené), rohy = průsečíky.
+    Dva průchody: první s volnou tolerancí z hrubých rohů, druhý těsně kolem už nalezených přímek."""
+    rough = corners
+    for p in range(passes):
+        lines = []
+        for i in range(4):
+            a, b = corners[i], corners[(i + 1) % 4]
+            d = b - a; L = np.linalg.norm(d); d /= L
+            n = np.array([-d[1], d[0]])
+            rel = pts - a
+            t = (rel * d).sum(1) / L
+            dist = np.abs((rel * n).sum(1))
+            tol_i = max(4.0, (0.05 if p == 0 else 0.012) * L)
+            sel = (t > band) & (t < 1 - band) & (dist < tol_i)
+            if sel.sum() < 10:
+                raise SystemExit("hrana %d: málo bodů obrysu (%d), zadej --corners" % (i, sel.sum()))
+            lines.append(fit_line(pts[sel]))
+        corners = np.array([intersect(lines[(i - 1) % 4], lines[i]) for i in range(4)])
+    sharp, corners = corners, rough
     # odhad zaoblení rohu: vzdálenost zaobleného (extrémního) bodu od ostrého rohu po úhlopříčce = r (sqrt2 - 1)
     r_px = float(np.mean([np.linalg.norm(sharp[i] - corners[i]) for i in range(4)]) / (math.sqrt(2) - 1))
     return sharp, r_px

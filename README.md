@@ -81,8 +81,8 @@ Ve složce `img/`:
 | `icon-192.png`, `/apple-touch-icon.png` (180), `/favicon-32x32.png`, `/favicon.ico` (16 + 32) | zmenšeniny `icon-512.png` (Pillow LANCZOS) |
 | `logo.svg` | značka + wordmark „Saildays" v Archivo 800 / šířka 118 převedený na křivky (fontTools nad `assets/fonts/archivo-latin.woff2`); kopie v `Saildays/branding/logo.svg` |
 | `og.png` | náhled pro sdílení (`og:image`), 1200×630, pro všechny jazyky; render `tools/og.html` headless Chromem (příkaz v hlavičce souboru) |
-| `photo-hero-<jazyk>.webp`, `photo-hero-<jazyk>-480.webp` | fotka úvodu: ruka s telefonem v kokpitu, v displeji skutečný `01-log.png`; 780×1170 a 480×720 (`srcset`) |
-| `photo-helm-<jazyk>.webp`, `photo-helm-<jazyk>-m.webp` | pás ve funkcích: telefon v držáku u kompasu, v displeji `02-map.png`; 1400×933 a mobilní výřez 640×731 |
+| `photo-hero-<jazyk>.webp`, `photo-hero-<jazyk>-480.webp` | fotka úvodu: ruka s telefonem v kokpitu, pohled od zádi k přídi, v displeji skutečný `01-log.png`; 780×1170 a 480×720 (`srcset`) |
+| `photo-helm-<jazyk>.webp`, `photo-helm-<jazyk>-m.webp` | pás ve funkcích: telefon v držáku na sloupku kompasu od kormidla, v displeji `02-map.png`; 1400×933 a mobilní výřez 640×731 |
 | `shot-<obrazovka>-<jazyk>.webp` | screenshoty `log`, `map`, `note`, `export` × `en`, `cs`; 540×1200 v CSS rámečku telefonu |
 
 DE, FR a ES zatím ukazují anglické screenshoty i fotky (`SHOT_LANG` v `build.py`); až budou snímky v těch jazycích, stačí je přidat jako `shot-<obrazovka>-<jazyk>.webp`, pustit `tools/photos.sh <jazyk>` a rozšířit `SHOT_LANG`. Build přidává k obrázkům i faviconám otisk obsahu (`?v=`), takže se cache (7 dní na `/img/*`) po výměně snímku nebo značky obnoví sama; holé `/img/icon.svg` bez `?v=` může Cloudflare vracet staré až týden.
@@ -93,7 +93,7 @@ Skutečné screenshoty z aplikace, zdroj `~/GitHub/Saildays/store/screenshots/`:
 
 ## Fotky (telefon na lodi se skutečným snímkem)
 
-Fotky úvodu a pásu jsou vygenerované (OpenAI přes `impeccable generate-image`, 14. 11. 2026) **s úplně černým vypnutým displejem**; snímek aplikace do nich vkládá program, nikdy generátor. Zdrojové PNG s prompty (`<soubor>.png.json`) jsou v `media/photo/` **mimo git**, kopie na Drivu `Osobní/Jachting/Aplikace/web-media/photo/` (`rclone copy --update media/ gdrive:Osobní/Jachting/Aplikace/web-media/`). Použité: `hero-3.png` (ruka v kokpitu, 1024×1536) a `helm-2.png` (držák u kompasu, 1536×1024); ostatní kandidáti (`hero-1`, `hero-2`, `helm-1`, `chart-1`) leží vedle.
+Fotky úvodu a pásu jsou vygenerované (OpenAI přes `impeccable generate-image`, 14. 11. 2026) **s úplně černým vypnutým displejem**; snímek aplikace do nich vkládá program, nikdy generátor. Zdrojové PNG s prompty (`<soubor>.png.json`) jsou v `media/photo/` **mimo git**, kopie na Drivu `Osobní/Jachting/Aplikace/web-media/photo/` (`rclone copy --update media/ gdrive:Osobní/Jachting/Aplikace/web-media/`). Použité: `hero-fwd-2.png` (ruka s telefonem v kokpitu, za ní loď dopředu k přídi, 1024×1536) a `helm-fwd-2.png` (telefon v držáku na sloupku kompasu, displej dozadu ke kormidelníkovi, ruka na kole, 1536×1024). **Obě z pohledu kormidelníka od zádi k přídi** - majitel 14. 11. 2026 odmítl první verzi `helm-2.png` (telefon natočený od přídě k zádi) jako nerealistickou. Ostatní kandidáti (`hero-1..3`, `hero-fwd-1`, `helm-1`, `helm-2`, `helm-fwd-1`, `helm-fwd-3`, `chart-1`) leží vedle; prompty v `prompt-*.txt` a `<soubor>.png.json`.
 
 Nástroje potřebují Pillow a numpy (na miniai není numpy v systémovém Pythonu), proto venv v repu (`.venv/` v `.gitignore`):
 

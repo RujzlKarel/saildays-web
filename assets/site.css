@@ -185,7 +185,7 @@ h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
 
 /* -------- pás s fotkou přes celou šířku (telefon v držáku u kompasu s mapou dne) */
 .band { margin: 0; background: var(--photo-bg); }
-.band img { width: 100%; height: auto; max-height: 82vh; object-fit: cover; object-position: 72% 50%; background: var(--photo-bg); }
+.band img { width: 100%; height: auto; max-height: 82vh; object-fit: cover; object-position: 50% 45%; background: var(--photo-bg); }
 @media (max-width: 820px) { .band img { max-height: none; object-position: 50% 50%; } }
 
 /* -------- funkce: každá jako list přes celou šířku, střídavě porcelán / navy */
