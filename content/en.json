@@ -1,0 +1,135 @@
+{
+  "_comment": "Texts of the English site. Same keys and array lengths in every language (tools/build.py checks it). Short HTML (<b>, <a>) is allowed, {email} and {privacy} are placeholders. Never a long dash, only -.",
+  "lang_name": "English",
+  "lang_label": "Language",
+  "skip": "Skip to content",
+  "title": "Saildays - the sailing logbook that writes itself",
+  "description": "Saildays records your sailing trip and keeps the logbook for you: track, course changes, anchor and marina, notes, a sea map, a PDF logbook to sign and engine hours. Free Android app, no account, no ads. Your trips stay on your phone.",
+  "nav_features": "What it does",
+  "nav_privacy": "Privacy",
+  "hero_h1": "Your sailing logbook writes itself.",
+  "hero_lead": "<b>Saildays</b> records your track and logs every tack, gybe and course change with the time and position. You sail, the app keeps the log.",
+  "hero_cta": "Coming soon on Google Play",
+  "hero_more": "See what it does",
+  "hero_note": "Free Android app. No account, no ads. Your trips stay on your phone.",
+  "hero_alt": "Saildays logbook in dark mode with the day's timeline",
+  "features_h2": "What it does",
+  "features_lead": "Tap Start recording when you cast off. Saildays keeps recording with the screen off and without signal, and every entry gets the time and position. When you are back, the trip is already written down.",
+  "features": [
+    {
+      "id": "record",
+      "title": "Records the trip for you",
+      "sub": "",
+      "text": "Every course change of 30° or more goes into the log with the time and position where the turn began. After 10 minutes without moving a silent notification asks: anchor, marina or other. When you get going again it asks: engine or sails. The thresholds can be changed in Settings.",
+      "visual": "shot-log",
+      "alt": "Logbook with the day's timeline and a map preview"
+    },
+    {
+      "id": "onetap",
+      "title": "Everything else in one tap",
+      "sub": "",
+      "text": "Engine, sails with reefs, anchor, marina, mooring buoy or shore lines, each with one tap and your current position. Notes take wind, manoeuvre, dictation and photos. There is a radio log with the channel and type of call, and a man overboard button that points you back to the spot.",
+      "visual": "shot-note",
+      "alt": "Note with wind, manoeuvre and photos"
+    },
+    {
+      "id": "map",
+      "title": "A real sea map",
+      "sub": "",
+      "text": "Your track on OpenStreetMap with OpenSeaMap seamarks: buoys, lights and harbours. Coloured by sails and engine, with every log entry on it. Map areas you have viewed stay on your phone (up to 200 MB), so the map works offline too.",
+      "visual": "shot-map",
+      "alt": "Map with the track and OpenSeaMap marks"
+    },
+    {
+      "id": "pdf",
+      "title": "A logbook you can sign",
+      "sub": "New in version 1.1",
+      "text": "Export a PDF logbook that looks like the paper one: every entry by day with time, position, course and speed, ready to print. The last page has a signature line for the skipper, so the printout can serve as a record of your sea miles.",
+      "visual": "paper",
+      "alt": ""
+    },
+    {
+      "id": "engine",
+      "title": "Engine hours",
+      "sub": "New in version 1.1",
+      "text": "Enter the counter reading when you cast off. The trip summary and the PDF show the reading at the end and the time under engine, and the total for your boat adds up across all trips.",
+      "visual": "ledger",
+      "alt": ""
+    },
+    {
+      "id": "pause",
+      "title": "Pause, and fix the start or end",
+      "sub": "New in version 1.1",
+      "text": "Pause recording for a day ashore and resume with one tap. Started recording in the car, or forgot to end the trip? Move the start or end afterwards; what lies outside the new range is removed.",
+      "visual": "timeline",
+      "alt": ""
+    },
+    {
+      "id": "export",
+      "title": "Export when you need it",
+      "sub": "",
+      "text": "A finished trip goes out as a ZIP with a GPX track for any map app, a JSON file with the whole log and the photos you attached, or as the PDF logbook. Send it to Google Drive or by e-mail, or keep it on your phone.",
+      "visual": "shot-export",
+      "alt": "End-of-trip summary with export"
+    }
+  ],
+  "paper": {
+    "title": "Logbook",
+    "trip": "Kornati 2026",
+    "day": "Monday 12 October 2026",
+    "cols": ["Time", "Position", "Course", "Speed", "Entry"],
+    "rows": [
+      ["09:51", "43°50.4' N 15°15.6' E", "096°", "5.4 kn", "Sails: main + genoa"],
+      ["10:46", "43°51.0' N 15°22.8' E", "091°", "5.9 kn", "Course change 83° to 91°"],
+      ["11:30", "43°50.9' N 15°28.8' E", "088°", "4.8 kn", "Lunch and a swim, wind W 2 Bft"],
+      ["11:44", "43°51.1' N 15°30.0' E", "-", "0.0 kn", "Anchor"],
+      ["14:10", "43°49.2' N 15°35.4' E", "-", "-", "Marina"]
+    ],
+    "sig_skipper": "Skipper (name, signature)",
+    "sig_date": "Date",
+    "page": "page 3 / 3"
+  },
+  "ledger": {
+    "rows": [
+      ["Counter at cast off", "1,204.3 h"],
+      ["Counter at the end", "1,205.4 h"],
+      ["Under engine this trip", "1 h 09 min"],
+      ["Total for the boat", "38.6 h"]
+    ]
+  },
+  "timeline": {
+    "rows": [
+      {"when": "Sat 10 Oct 06:15", "text": "Start of recording, drive to the marina", "removed": true},
+      {"when": "Sat 10 Oct 07:40", "text": "Start of trip, moved here", "removed": false},
+      {"when": "Sun 11 Oct", "text": "Recording paused, day ashore", "removed": false},
+      {"when": "Mon 12 Oct 14:10", "text": "Trip ended", "removed": false}
+    ]
+  },
+  "how_h2": "How it works",
+  "steps": [
+    {"title": "Start recording", "text": "Tap Start recording when you cast off. A notification shows that recording is running, even with the screen off."},
+    {"title": "Sail", "text": "Saildays logs course changes and asks about stops and departures. Answer right in the notification, or later in the log."},
+    {"title": "Look back", "text": "Browse the log day by day, see the trip on the map, and export it or print the PDF logbook when you are home."}
+  ],
+  "privacy_h2": "Private by design",
+  "privacy_items": [
+    {"strong": "Your trips stay on your phone.", "text": "There is no server and nothing is sent to us. Location is used only while you record."},
+    {"strong": "No account.", "text": "No sign-up, no e-mail, just open the app and sail."},
+    {"strong": "No ads, no analytics, no tracking.", "text": "And it is free."}
+  ],
+  "privacy_note": "The only thing downloaded from the internet is map tiles, from OpenFreeMap and OpenSeaMap. Details in the {privacy}.",
+  "privacy_link": "privacy policy",
+  "langs_h2": "In 21 languages",
+  "langs_text": "Saildays follows the language of your phone, or the one you pick in Settings. Units: nautical miles, knots and degrees. Dark mode included.",
+  "get_h2": "Coming soon on Google Play",
+  "get_text": "Saildays is not in Google Play yet. The first release is on its way, and this page will get the store link as soon as it is live. The app is free, with no account and no ads.",
+  "get_contact": "Questions? Write to {email}.",
+  "footer_disclaimer": "Saildays is a logbook, not a navigation aid. Always use official charts and your own judgement.",
+  "footer_privacy": "Privacy policy",
+  "footer_contact": "Contact",
+  "privacy_title": "Saildays Privacy Policy",
+  "privacy_description": "The developer of Saildays does not collect, store or share any personal data. Your trips stay on your phone.",
+  "notfound_title": "Page not found",
+  "notfound_text": "This page does not exist.",
+  "home": "Back to the home page"
+}

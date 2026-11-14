@@ -1,2 +1,6 @@
 .env
 .env.*
+# Vygenerovany web, vznika z tools/build.py
+dist/
+# Pismo Archivo (woff2 z Google Fonts, OFL) stahuje build.py; do gitu nepatri
+assets/fonts/*.woff2

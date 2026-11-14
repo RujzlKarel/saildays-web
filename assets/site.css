@@ -1,0 +1,281 @@
+/* Web Saildays, směr A2 „editorial katalog" (jako navyfaces.com) v paletě Saildays: porcelán a navy z ikony,
+   velký telefon se skutečným snímkem, Archivo široké na nadpisy, žádné karty ani mřížky. Modrá #1971c2 jen na
+   hlavní tlačítko. Tmavý režim podle systému. Mobil napřed, bez knihoven. Tokeny a pravidla: DESIGN.md. */
+
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62.5% 125%;
+  font-display: swap;
+  src: url(/assets/fonts/archivo-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Archivo";
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 62.5% 125%;
+  font-display: swap;
+  src: url(/assets/fonts/archivo-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --porcelain: #f2f5f8;
+  --porcelain-2: #e6edf3;
+  --rule: #d0dbe5;
+  --ink: #0b3a5c;
+  --ink-2: #4a6378;
+  --deep: #0b3a5c;
+  --deep-2: #0e4670;
+  --on-deep: #eaf2f8;
+  --steel: #a9c8de;
+  --steel-2: #7fa6c2;
+  --sky: #8fc8f0;
+  --accent: #1971c2;
+  --accent-hover: #1864ab;
+  --on-accent: #ffffff;
+  --paper: #fffdf6;
+  --paper-ink: #1b2430;
+  --paper-rule: #c9c3b4;
+  --bezel: #0a1a28;
+  --outline: rgba(0, 0, 0, .1);
+  --outline-on-deep: rgba(255, 255, 255, .12);
+  --phone-shadow: 0 1px 2px rgba(11, 58, 92, .12), 0 40px 80px -30px rgba(11, 58, 92, .55);
+  --phone-shadow-deep: 0 1px 2px rgba(0, 0, 0, .3), 0 40px 80px -30px rgba(0, 0, 0, .7);
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --text: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --gutter: clamp(16px, 4vw, 56px);
+  --max: 1320px;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --porcelain: #0b1620;
+    --porcelain-2: #0f1d2a;
+    --rule: #213447;
+    --ink: #e6eef5;
+    --ink-2: #9fb6c8;
+    --outline: rgba(255, 255, 255, .1);
+    --phone-shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 40px 80px -30px rgba(0, 0, 0, .8);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--porcelain);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--text);
+  font-variation-settings: "wdth" 100;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::selection { background: var(--ink); color: var(--porcelain); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+p { margin: 0 0 1em; text-wrap: pretty; }
+b, strong { font-weight: 650; }
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-variation-settings: "wdth" 112;
+  line-height: .95;
+  letter-spacing: -.03em;
+  margin: 0;
+  text-wrap: balance;
+  overflow-wrap: break-word;  /* dlouhá slova (cs „Všechno", de „Aufzeichnung") na 360-390 px nesmí přetéct */
+  hyphens: auto;
+}
+h1 { font-size: clamp(2.8rem, 5.4vw, 5.8rem); font-weight: 850; line-height: .92; letter-spacing: -.035em; }  /* DE/FR/ES nadpisy jsou delší než EN, 6.4rem dávalo 5 řádků */
+h2 { font-size: clamp(2rem, 4vw, 3.4rem); }
+h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+
+.skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: var(--porcelain); padding: 8px 12px; z-index: 10; }
+.skip:focus { left: 8px; }
+.note { color: var(--ink-2); }
+
+/* -------- tlačítka a odkazy */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 14px 28px; border: 0; border-radius: 0;
+  font: 700 1rem/1.2 var(--text); text-decoration: none; cursor: pointer;
+  transition-property: background-color, transform; transition-duration: .18s; transition-timing-function: var(--ease);
+}
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-primary:active { transform: scale(.96); }
+.more { font-weight: 600; }
+
+/* -------- hlavička */
+.site-header { position: relative; z-index: 3; }
+.header-row { display: flex; align-items: center; justify-content: space-between; min-height: 76px; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; padding: 8px 0;
+  font: 800 1.25rem/1 var(--display); font-variation-settings: "wdth" 118; letter-spacing: .01em; }
+.brand img { width: 32px; height: 32px; border-radius: 8px; }
+.nav { display: flex; align-items: center; gap: clamp(10px, 2.2vw, 30px); font-size: .97rem; }
+.nav a { text-decoration: none; padding: 10px 2px; white-space: nowrap; }
+.nav a:hover, .nav a[aria-current] { text-decoration: underline; }
+.nav a[aria-current] { text-decoration-thickness: 2px; }
+@media (max-width: 480px) { .nav .nav-features { display: none; } }
+/* 360 px v DE/FR: brand + Datenschutz/Confidentialité + jazyk se nevejdou; zásady jsou v patičce i v sekci soukromí */
+@media (max-width: 400px) { .nav .nav-privacy { display: none; } }
+
+/* Přepínač jazyků: zkratka v hlavičce, seznam pod ní (details, funguje bez JS) */
+.lang-menu { position: relative; }
+.lang-menu summary { list-style: none; cursor: pointer; padding: 9px 12px; min-height: 40px; font-weight: 650; letter-spacing: .04em;
+  display: flex; align-items: center; gap: 7px; border: 1.5px solid currentColor; }
+.lang-menu summary:hover, .lang-menu[open] summary { background: var(--ink); color: var(--porcelain); }
+.lang-menu .globe { flex: none; }
+.lang-menu summary::-webkit-details-marker { display: none; }
+.lang-menu summary::after { content: ""; width: 6px; height: 6px; border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.lang-menu[open] summary::after { transform: translateY(1px) rotate(-135deg); }
+.lang-menu ul { position: absolute; right: 0; top: 100%; margin: 0; padding: 6px 0; list-style: none; min-width: 10rem;
+  background: var(--porcelain); border: 1px solid var(--rule); z-index: 5; }
+.lang-menu li a { display: block; padding: 9px 18px; text-decoration: none; }
+.lang-menu li a:hover, .lang-menu li a[aria-current] { text-decoration: underline; }
+.lang-menu li a[aria-current] { text-decoration-thickness: 2px; }
+
+/* -------- telefon: skutečný snímek v rámečku (44 vně, 32 displej, padding 12 = soustředně) */
+.phone { background: var(--bezel); border-radius: 44px; padding: 12px; box-shadow: var(--phone-shadow); width: 100%; }
+.phone img { border-radius: 32px; width: 100%; outline: 1px solid var(--outline-on-deep); outline-offset: -1px; background: #0f1720; }
+
+/* -------- úvod */
+.hero { padding: clamp(24px, 5vh, 64px) 0 clamp(56px, 10vh, 120px); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.hero h1 { margin-bottom: clamp(28px, 4vw, 48px); }
+.hero-copy { max-width: 31rem; }
+.hero-copy p { color: var(--ink-2); font-size: 1.125rem; }
+.hero-copy b { color: var(--ink); }
+.act { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin: 28px 0 18px; }
+.hero .note { font-size: .97rem; }
+.hero-phone { justify-self: end; width: min(100%, 400px); }
+
+@media (max-width: 820px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-text { display: contents; }
+  .hero h1 { order: 1; margin-bottom: 8px; }
+  .hero-phone { order: 2; justify-self: center; width: min(68vw, 340px); margin: 12px 0 8px; }
+  .hero-copy { order: 3; max-width: none; }
+  .act { flex-direction: column; align-items: stretch; text-align: center; }
+}
+
+/* -------- funkce: každá jako list přes celou šířku, střídavě porcelán / navy */
+.line-head { padding: clamp(64px, 9vw, 128px) 0 clamp(40px, 6vw, 72px); border-top: 1px solid var(--rule); }
+.line-head p { color: var(--ink-2); font-size: 1.125rem; max-width: 38rem; margin: 20px 0 0; }
+.spreads { list-style: none; margin: 0; padding: 0; }
+.spread { padding: clamp(56px, 8vw, 112px) 0; }
+.spread:nth-child(even) { background: var(--deep); color: var(--on-deep); }
+.spread-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.spread:nth-child(even) .spread-visual { order: 2; }
+.spread-visual { display: flex; justify-content: center; container-type: inline-size; }
+.spread-phone .phone { width: min(100%, 340px); }
+.spread:nth-child(even) .phone { box-shadow: var(--phone-shadow-deep); }
+.spread h3 { font-size: clamp(2.2rem, 4.6vw, 4.2rem); }
+.spread .sub { font-size: 1.15rem; margin: 14px 0 0; color: var(--ink-2); }
+.spread:nth-child(even) .sub { color: var(--steel); }
+.spread-text > p:last-child { max-width: 34rem; margin: 22px 0 0; }
+.spread:nth-child(even) .spread-text > p:last-child { color: var(--on-deep); }
+@media (max-width: 820px) {
+  .spread-grid { grid-template-columns: minmax(0, 1fr); }
+  .spread:nth-child(even) .spread-visual { order: 0; }
+  .spread-phone .phone { width: min(68vw, 320px); }
+}
+
+/* Typografické objekty pro funkce bez snímku (žádné falešné obrázky) */
+.paper { width: min(100%, 580px); background: var(--paper); color: var(--paper-ink); padding: clamp(18px, 3vw, 32px) clamp(16px, 3vw, 30px) clamp(14px, 2vw, 22px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .25), 0 30px 60px -24px rgba(0, 0, 0, .7); font-family: var(--mono); font-size: clamp(.7rem, 1.9vw, .88rem); line-height: 1.45;
+  font-variant-numeric: tabular-nums; }
+.paper-head { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: baseline; border-bottom: 2px solid var(--paper-ink); padding-bottom: 8px; margin-bottom: 10px; }
+.paper-title { font: 800 1.35em/1 var(--display); font-variation-settings: "wdth" 112; letter-spacing: -.02em; margin-right: auto; }
+.paper table { width: 100%; border-collapse: collapse; }
+.paper th { text-align: left; font-weight: 400; color: #5a6270; padding: 4px 8px 6px 0; border-bottom: 1px solid var(--paper-rule); }
+.paper td { padding: 7px 8px 7px 0; border-bottom: 1px solid var(--paper-rule); vertical-align: top; white-space: nowrap; }
+.paper td:last-child, .paper th:last-child { white-space: normal; padding-right: 0; width: 100%; }
+.paper-sign { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-top: clamp(28px, 4vw, 44px); }
+.paper-sign span { border-top: 1px solid var(--paper-ink); padding-top: 6px; color: #5a6270; }
+.paper-foot { text-align: right; color: #5a6270; margin-top: 14px; font-size: .9em; }
+/* Úzký sloupec (mobil i dvousloupcový list do ~1100 px): bez kurzu a rychlosti, ať tabulka nepřeteče */
+@container (max-width: 480px) {
+  .paper th:nth-child(3), .paper td:nth-child(3), .paper th:nth-child(4), .paper td:nth-child(4) { display: none; }
+  .timeline li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+
+.ledger { width: min(100%, 520px); margin: 0; font-variant-numeric: tabular-nums; }
+.ledger-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px 0; border-top: 1px solid var(--rule); }
+.ledger-row:last-child { border-bottom: 1px solid var(--rule); }
+.ledger dt { color: var(--ink-2); }
+.ledger dd { margin: 0; font: 800 clamp(1.5rem, 3vw, 2.6rem)/1 var(--display); font-variation-settings: "wdth" 108; letter-spacing: -.02em; white-space: nowrap; }
+.spread:nth-child(even) .ledger-row { border-color: rgba(255, 255, 255, .18); }
+.spread:nth-child(even) .ledger dt { color: var(--steel); }
+
+.timeline { width: min(100%, 560px); list-style: none; margin: 0; padding: 0; font-family: var(--mono); font-size: clamp(.82rem, 1.8vw, .95rem); font-variant-numeric: tabular-nums; }
+.timeline li { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid rgba(255, 255, 255, .18); }
+.timeline li:last-child { border-bottom: 1px solid rgba(255, 255, 255, .18); }
+.spread:nth-child(odd) .timeline li { border-color: var(--rule); }
+.tl-when { color: var(--steel); white-space: nowrap; }
+.spread:nth-child(odd) .tl-when { color: var(--ink-2); }
+.tl-removed { color: var(--steel-2); text-decoration: line-through; text-decoration-thickness: 1px; }
+.spread:nth-child(odd) .tl-removed { color: var(--ink-2); }
+
+/* -------- textové sekce: jak to funguje, soukromí, jazyky */
+.how, .private, .langs { padding: clamp(64px, 9vw, 120px) 0 0; }
+.how h2, .private h2, .langs h2 { margin-bottom: clamp(24px, 3vw, 40px); }
+.steps { list-style: none; margin: 0; padding: 0; max-width: 46rem; counter-reset: step; }
+.steps li { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 8px 20px; padding: 22px 0; border-top: 1px solid var(--rule); counter-increment: step; }
+.steps li:last-child { border-bottom: 1px solid var(--rule); }
+.steps li::before { content: counter(step); grid-row: 1 / span 2; font: 800 clamp(2rem, 3vw, 2.6rem)/1 var(--display); font-variation-settings: "wdth" 112; letter-spacing: -.03em; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.steps h3 { font-size: clamp(1.35rem, 2vw, 1.7rem); }
+.steps p { margin: 0; color: var(--ink-2); max-width: 36rem; }
+.claims { list-style: none; margin: 0; padding: 0; max-width: 46rem; }
+.claims li { padding: 18px 0; border-top: 1px solid var(--rule); font-size: 1.15rem; }
+.claims li:last-child { border-bottom: 1px solid var(--rule); }
+.claims strong { font-weight: 750; }
+.private .note { max-width: 46rem; margin: 20px 0 0; }
+.langs > .wrap > p { max-width: 42rem; color: var(--ink-2); font-size: 1.125rem; }
+.lang-list { font: 650 clamp(1.1rem, 1.8vw, 1.35rem)/1.7 var(--display); font-variation-settings: "wdth" 106; color: var(--ink) !important; max-width: 60rem !important; }
+
+/* -------- brzy v Google Play (kotva hlavního tlačítka) */
+.get { margin-top: clamp(64px, 9vw, 120px); background: var(--deep); color: var(--on-deep); padding: clamp(64px, 9vw, 120px) 0; }
+.get-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px clamp(40px, 6vw, 96px); align-items: start; }
+.get h2 { max-width: 12ch; }
+.get p { color: var(--steel); font-size: 1.125rem; max-width: 34rem; }
+.get a { color: var(--on-deep); }
+@media (max-width: 820px) { .get-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* -------- zásady a 404 */
+.prose-wrap { padding: clamp(32px, 6vw, 80px) 0 clamp(72px, 10vw, 140px); }
+.prose { max-width: 42rem; font-size: 1.0625rem; line-height: 1.65; }
+.prose h1 { font-size: clamp(2.4rem, 5vw, 4.4rem); margin-bottom: 12px; }
+.prose .meta { color: var(--ink-2); margin-bottom: clamp(28px, 4vw, 44px); }
+.prose h2 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); margin: 2.2em 0 .6em; }
+.prose ul { padding-left: 1.2em; }
+.prose li { margin: .4em 0; }
+.prose li::marker { color: var(--ink-2); }
+.prose code { font: .9em/1 var(--mono); background: var(--porcelain-2); padding: 2px 5px; }
+.prose a { text-decoration-color: var(--ink-2); }
+
+/* -------- patička */
+.site-footer { background: var(--porcelain-2); padding: 56px 0 64px; font-size: .92rem; color: var(--ink-2); }
+.footer-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 48px; align-items: start; }
+.footer-brand { color: var(--ink); font: 800 1.1rem/1 var(--display); font-variation-settings: "wdth" 118; margin-bottom: 14px; }
+.footer-note { max-width: 40rem; margin: 0 0 10px; color: var(--ink); }
+.footer-tm { max-width: 40rem; margin: 0 0 6px; }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.site-footer nav a { color: var(--ink); }
+.footer-nav { display: grid; gap: 18px; justify-items: start; }
+.site-footer .footer-langs { gap: 8px 18px; }
+.footer-langs a[aria-current] { text-decoration-thickness: 2px; font-weight: 650; }
+@media (max-width: 820px) { .footer-grid { grid-template-columns: minmax(0, 1fr); } }
+
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }

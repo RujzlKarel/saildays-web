@@ -1,0 +1,135 @@
+{
+  "_comment": "Deutsche Texte, maschinelle Übersetzung (Claude, 14. 11. 2026) ohne muttersprachliches Lektorat. Anrede du wie in der App. Gleiche Schlüssel und Feldlängen wie en.json. Nie ein langer Gedankenstrich, nur -.",
+  "lang_name": "Deutsch",
+  "lang_label": "Sprache",
+  "skip": "Zum Inhalt springen",
+  "title": "Saildays - das Segellogbuch, das sich von selbst schreibt",
+  "description": "Saildays zeichnet deinen Törn auf und führt das Logbuch für dich: Track, Kursänderungen, Anker und Marina, Notizen, Seekarte, PDF-Logbuch zum Unterschreiben und Motorstunden. Kostenlose Android-App, ohne Konto, ohne Werbung. Deine Törns bleiben auf dem Handy.",
+  "nav_features": "Funktionen",
+  "nav_privacy": "Datenschutz",
+  "hero_h1": "Dein Logbuch schreibt sich von selbst.",
+  "hero_lead": "<b>Saildays</b> zeichnet deinen Track auf und trägt jede Wende, Halse und Kursänderung mit Zeit und Position ein. Du segelst, die App führt das Logbuch.",
+  "hero_cta": "Bald bei Google Play",
+  "hero_more": "Was die App kann",
+  "hero_note": "Kostenlose Android-App. Ohne Konto, ohne Werbung. Deine Törns bleiben auf dem Handy.",
+  "hero_alt": "Saildays-Logbuch im Dunkelmodus mit der Zeitleiste des Tages",
+  "features_h2": "Was die App kann",
+  "features_lead": "Tippe beim Ablegen auf Aufzeichnung starten. Saildays zeichnet auch bei ausgeschaltetem Display und ohne Netz weiter auf, und jeder Eintrag bekommt Zeit und Position. Wenn du zurück bist, ist der Törn schon geschrieben.",
+  "features": [
+    {
+      "id": "record",
+      "title": "Zeichnet den Törn für dich auf",
+      "sub": "",
+      "text": "Jede Kursänderung von 30° oder mehr kommt mit Zeit und Position des Wendebeginns ins Logbuch. Nach 10 Minuten ohne Bewegung fragt eine stille Benachrichtigung: Anker, Marina oder anderes. Wenn du wieder Fahrt aufnimmst, fragt sie: Motor oder Segel. Die Schwellen änderst du in den Einstellungen.",
+      "visual": "shot-log",
+      "alt": "Logbuch mit der Zeitleiste des Tages und Kartenvorschau"
+    },
+    {
+      "id": "onetap",
+      "title": "Alles andere mit einem Tipp",
+      "sub": "",
+      "text": "Motor, Segel mit Reffs, Anker, Marina, Mooringboje oder Landleinen, jeweils mit einem Tipp und deiner aktuellen Position. Notizen nehmen Wind, Manöver, Diktat und Fotos auf. Dazu ein Funktagebuch mit Kanal und Art des Anrufs und ein Mann-über-Bord-Knopf, der dich zur Stelle zurückführt.",
+      "visual": "shot-note",
+      "alt": "Notiz mit Wind, Manöver und Fotos"
+    },
+    {
+      "id": "map",
+      "title": "Eine echte Seekarte",
+      "sub": "",
+      "text": "Dein Track auf OpenStreetMap mit Seezeichen von OpenSeaMap: Tonnen, Leuchtfeuer und Häfen. Eingefärbt nach Segel und Motor, mit jedem Logbucheintrag darauf. Kartenbereiche, die du angesehen hast, bleiben auf dem Handy (bis 200 MB), die Karte funktioniert also auch offline.",
+      "visual": "shot-map",
+      "alt": "Karte mit Track und OpenSeaMap-Zeichen"
+    },
+    {
+      "id": "pdf",
+      "title": "Ein Logbuch zum Unterschreiben",
+      "sub": "Neu in Version 1.1",
+      "text": "Exportiere ein PDF-Logbuch, das aussieht wie das aus Papier: jeder Eintrag nach Tagen mit Zeit, Position, Kurs und Fahrt, fertig zum Drucken. Auf der letzten Seite steht eine Unterschriftenzeile für den Skipper, damit der Ausdruck als Nachweis deiner Seemeilen dienen kann.",
+      "visual": "paper",
+      "alt": ""
+    },
+    {
+      "id": "engine",
+      "title": "Motorstunden",
+      "sub": "Neu in Version 1.1",
+      "text": "Gib beim Ablegen den Zählerstand ein. Törnzusammenfassung und PDF zeigen den Stand am Ende und die Zeit unter Motor, und die Summe für dein Boot wächst über alle Törns.",
+      "visual": "ledger",
+      "alt": ""
+    },
+    {
+      "id": "pause",
+      "title": "Pausieren, Anfang oder Ende korrigieren",
+      "sub": "Neu in Version 1.1",
+      "text": "Pausiere die Aufzeichnung für einen Tag an Land und setze sie mit einem Tipp fort. Schon im Auto aufgenommen oder vergessen, den Törn zu beenden? Verschiebe Anfang oder Ende nachträglich; was außerhalb des neuen Bereichs liegt, wird entfernt.",
+      "visual": "timeline",
+      "alt": ""
+    },
+    {
+      "id": "export",
+      "title": "Export, wenn du ihn brauchst",
+      "sub": "",
+      "text": "Ein beendeter Törn geht als ZIP mit GPX-Track für jede Karten-App, einer JSON-Datei mit dem ganzen Logbuch und den angehängten Fotos raus, oder als PDF-Logbuch. Schick ihn an Google Drive oder per E-Mail, oder behalte ihn auf dem Handy.",
+      "visual": "shot-export",
+      "alt": "Zusammenfassung am Törnende mit Export"
+    }
+  ],
+  "paper": {
+    "title": "Logbuch",
+    "trip": "Kornati 2026",
+    "day": "Montag, 12. Oktober 2026",
+    "cols": ["Zeit", "Position", "Kurs", "Fahrt", "Eintrag"],
+    "rows": [
+      ["09:51", "43°50,4' N 15°15,6' E", "096°", "5,4 kn", "Segel: Groß + Genua"],
+      ["10:46", "43°51,0' N 15°22,8' E", "091°", "5,9 kn", "Kursänderung 83° auf 91°"],
+      ["11:30", "43°50,9' N 15°28,8' E", "088°", "4,8 kn", "Mittagessen und Baden, Wind W 2 Bft"],
+      ["11:44", "43°51,1' N 15°30,0' E", "-", "0,0 kn", "Anker"],
+      ["14:10", "43°49,2' N 15°35,4' E", "-", "-", "Marina"]
+    ],
+    "sig_skipper": "Skipper (Name, Unterschrift)",
+    "sig_date": "Datum",
+    "page": "Seite 3 / 3"
+  },
+  "ledger": {
+    "rows": [
+      ["Zähler beim Ablegen", "1.204,3 h"],
+      ["Zähler am Ende", "1.205,4 h"],
+      ["Unter Motor auf diesem Törn", "1 h 09 min"],
+      ["Summe für das Boot", "38,6 h"]
+    ]
+  },
+  "timeline": {
+    "rows": [
+      {"when": "Sa 10.10. 06:15", "text": "Start der Aufzeichnung, Fahrt zur Marina", "removed": true},
+      {"when": "Sa 10.10. 07:40", "text": "Törnbeginn, hierher verschoben", "removed": false},
+      {"when": "So 11.10.", "text": "Aufzeichnung pausiert, Tag an Land", "removed": false},
+      {"when": "Mo 12.10. 14:10", "text": "Törn beendet", "removed": false}
+    ]
+  },
+  "how_h2": "So funktioniert es",
+  "steps": [
+    {"title": "Aufzeichnung starten", "text": "Tippe beim Ablegen auf Aufzeichnung starten. Eine Benachrichtigung zeigt, dass die Aufzeichnung läuft, auch bei ausgeschaltetem Display."},
+    {"title": "Segeln", "text": "Saildays trägt Kursänderungen ein und fragt nach Stopps und Abfahrten. Antworte direkt in der Benachrichtigung oder später im Logbuch."},
+    {"title": "Zurückblicken", "text": "Blättere das Logbuch Tag für Tag durch, sieh dir den Törn auf der Karte an und exportiere ihn zu Hause oder drucke das PDF-Logbuch."}
+  ],
+  "privacy_h2": "Privat von Anfang an",
+  "privacy_items": [
+    {"strong": "Deine Törns bleiben auf dem Handy.", "text": "Es gibt keinen Server, und nichts wird an uns gesendet. Der Standort wird nur während der Aufzeichnung genutzt."},
+    {"strong": "Kein Konto.", "text": "Keine Registrierung, keine E-Mail, einfach App öffnen und ablegen."},
+    {"strong": "Keine Werbung, keine Analyse, kein Tracking.", "text": "Und sie ist kostenlos."}
+  ],
+  "privacy_note": "Aus dem Internet werden nur Kartenkacheln geladen, von OpenFreeMap und OpenSeaMap. Details in der {privacy}.",
+  "privacy_link": "Datenschutzerklärung",
+  "langs_h2": "In 21 Sprachen",
+  "langs_text": "Saildays folgt der Sprache deines Handys oder der, die du in den Einstellungen wählst. Einheiten: Seemeilen, Knoten und Grad. Dunkelmodus inklusive.",
+  "get_h2": "Bald bei Google Play",
+  "get_text": "Saildays ist noch nicht bei Google Play. Die erste Version ist unterwegs, und diese Seite bekommt den Store-Link, sobald er live ist. Die App ist kostenlos, ohne Konto und ohne Werbung.",
+  "get_contact": "Fragen? Schreib an {email}.",
+  "footer_disclaimer": "Saildays ist ein Logbuch, kein Navigationsmittel. Nutze immer amtliche Seekarten und dein eigenes Urteil.",
+  "footer_privacy": "Datenschutzerklärung",
+  "footer_contact": "Kontakt",
+  "privacy_title": "Saildays Privacy Policy",
+  "privacy_description": "The developer of Saildays does not collect, store or share any personal data. Your trips stay on your phone.",
+  "notfound_title": "Seite nicht gefunden",
+  "notfound_text": "Diese Seite gibt es nicht.",
+  "home": "Zurück zur Startseite"
+}

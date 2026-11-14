@@ -1,0 +1,135 @@
+{
+  "_comment": "Textos en español, traducción automática (Claude, 14. 11. 2026) sin revisión de un hablante nativo. Tuteo como en la app. Mismas claves y longitudes de listas que en.json. Nunca una raya larga, solo -.",
+  "lang_name": "Español",
+  "lang_label": "Idioma",
+  "skip": "Ir al contenido",
+  "title": "Saildays - el cuaderno de bitácora que se escribe solo",
+  "description": "Saildays graba tu navegación y lleva el cuaderno de bitácora por ti: derrota, cambios de rumbo, ancla y marina, notas, carta náutica, bitácora en PDF para firmar y horas de motor. App Android gratuita, sin cuenta, sin anuncios. Tus navegaciones se quedan en tu teléfono.",
+  "nav_features": "Funciones",
+  "nav_privacy": "Privacidad",
+  "hero_h1": "Tu cuaderno de bitácora se escribe solo.",
+  "hero_lead": "<b>Saildays</b> graba tu derrota y anota cada virada, trasluchada y cambio de rumbo con la hora y la posición. Tú navegas, la app lleva la bitácora.",
+  "hero_cta": "Próximamente en Google Play",
+  "hero_more": "Qué hace",
+  "hero_note": "App Android gratuita. Sin cuenta, sin anuncios. Tus navegaciones se quedan en tu teléfono.",
+  "hero_alt": "Bitácora de Saildays en modo oscuro con la cronología del día",
+  "features_h2": "Qué hace",
+  "features_lead": "Toca Empezar a grabar al soltar amarras. Saildays sigue grabando con la pantalla apagada y sin cobertura, y cada entrada recibe la hora y la posición. Cuando vuelves, la navegación ya está escrita.",
+  "features": [
+    {
+      "id": "record",
+      "title": "Graba la navegación por ti",
+      "sub": "",
+      "text": "Cada cambio de rumbo de 30° o más entra en la bitácora con la hora y la posición donde empezó la virada. Tras 10 minutos sin moverte, una notificación silenciosa pregunta: ancla, marina u otro. Cuando vuelves a arrancar, pregunta: motor o velas. Los umbrales se cambian en Ajustes.",
+      "visual": "shot-log",
+      "alt": "Bitácora con la cronología del día y vista previa del mapa"
+    },
+    {
+      "id": "onetap",
+      "title": "Todo lo demás con un toque",
+      "sub": "",
+      "text": "Motor, velas con rizos, ancla, marina, boya de amarre o cabos a tierra, cada uno con un toque y tu posición actual. Las notas admiten viento, maniobra, dictado y fotos. Hay además un diario de radio con el canal y el tipo de llamada, y un botón de hombre al agua que te lleva de vuelta al punto.",
+      "visual": "shot-note",
+      "alt": "Nota con viento, maniobra y fotos"
+    },
+    {
+      "id": "map",
+      "title": "Una carta náutica de verdad",
+      "sub": "",
+      "text": "Tu derrota sobre OpenStreetMap con el balizamiento de OpenSeaMap: boyas, luces y puertos. Coloreada según velas y motor, con cada entrada de la bitácora encima. Las zonas del mapa que has visto se quedan en tu teléfono (hasta 200 MB), así que el mapa funciona también sin conexión.",
+      "visual": "shot-map",
+      "alt": "Mapa con la derrota y las marcas de OpenSeaMap"
+    },
+    {
+      "id": "pdf",
+      "title": "Una bitácora que puedes firmar",
+      "sub": "Novedad en la versión 1.1",
+      "text": "Exporta una bitácora en PDF con el aspecto de la de papel: cada entrada por día con hora, posición, rumbo y velocidad, lista para imprimir. La última página lleva una línea de firma para el patrón, de modo que la impresión pueda servir como registro de tus millas.",
+      "visual": "paper",
+      "alt": ""
+    },
+    {
+      "id": "engine",
+      "title": "Horas de motor",
+      "sub": "Novedad en la versión 1.1",
+      "text": "Introduce la lectura del contador al soltar amarras. El resumen de la navegación y el PDF muestran la lectura al final y el tiempo a motor, y el total de tu barco se suma a lo largo de todas las navegaciones.",
+      "visual": "ledger",
+      "alt": ""
+    },
+    {
+      "id": "pause",
+      "title": "Pausar y corregir el inicio o el final",
+      "sub": "Novedad en la versión 1.1",
+      "text": "Pausa la grabación para un día en tierra y reanúdala con un toque. ¿Empezaste a grabar en el coche u olvidaste terminar la navegación? Mueve el inicio o el final después; lo que quede fuera del nuevo rango se elimina.",
+      "visual": "timeline",
+      "alt": ""
+    },
+    {
+      "id": "export",
+      "title": "Exporta cuando lo necesites",
+      "sub": "",
+      "text": "Una navegación terminada sale como ZIP con una derrota GPX para cualquier app de mapas, un archivo JSON con toda la bitácora y las fotos adjuntas, o como bitácora en PDF. Envíala a Google Drive o por correo, o guárdala en tu teléfono.",
+      "visual": "shot-export",
+      "alt": "Resumen de fin de navegación con exportación"
+    }
+  ],
+  "paper": {
+    "title": "Cuaderno de bitácora",
+    "trip": "Kornati 2026",
+    "day": "Lunes 12 de octubre de 2026",
+    "cols": ["Hora", "Posición", "Rumbo", "Velocidad", "Entrada"],
+    "rows": [
+      ["09:51", "43°50,4' N 15°15,6' E", "096°", "5,4 kn", "Velas: mayor + génova"],
+      ["10:46", "43°51,0' N 15°22,8' E", "091°", "5,9 kn", "Cambio de rumbo 83° a 91°"],
+      ["11:30", "43°50,9' N 15°28,8' E", "088°", "4,8 kn", "Comida y baño, viento W 2 Bft"],
+      ["11:44", "43°51,1' N 15°30,0' E", "-", "0,0 kn", "Ancla"],
+      ["14:10", "43°49,2' N 15°35,4' E", "-", "-", "Marina"]
+    ],
+    "sig_skipper": "Patrón (nombre, firma)",
+    "sig_date": "Fecha",
+    "page": "página 3 / 3"
+  },
+  "ledger": {
+    "rows": [
+      ["Contador al soltar amarras", "1.204,3 h"],
+      ["Contador al final", "1.205,4 h"],
+      ["A motor en esta navegación", "1 h 09 min"],
+      ["Total del barco", "38,6 h"]
+    ]
+  },
+  "timeline": {
+    "rows": [
+      {"when": "Sáb 10 oct 06:15", "text": "Inicio de la grabación, viaje en coche a la marina", "removed": true},
+      {"when": "Sáb 10 oct 07:40", "text": "Inicio de la navegación, movido aquí", "removed": false},
+      {"when": "Dom 11 oct", "text": "Grabación en pausa, día en tierra", "removed": false},
+      {"when": "Lun 12 oct 14:10", "text": "Navegación terminada", "removed": false}
+    ]
+  },
+  "how_h2": "Cómo funciona",
+  "steps": [
+    {"title": "Empieza a grabar", "text": "Toca Empezar a grabar al soltar amarras. Una notificación muestra que la grabación está en marcha, incluso con la pantalla apagada."},
+    {"title": "Navega", "text": "Saildays anota los cambios de rumbo y pregunta por paradas y salidas. Responde directamente en la notificación o más tarde en la bitácora."},
+    {"title": "Mira atrás", "text": "Repasa la bitácora día a día, mira la navegación en el mapa y, en casa, expórtala o imprime la bitácora en PDF."}
+  ],
+  "privacy_h2": "Privada por diseño",
+  "privacy_items": [
+    {"strong": "Tus navegaciones se quedan en tu teléfono.", "text": "No hay servidor y no se nos envía nada. La ubicación se usa solo mientras grabas."},
+    {"strong": "Sin cuenta.", "text": "Sin registro, sin correo: abre la app y suelta amarras."},
+    {"strong": "Sin anuncios, sin analítica, sin rastreo.", "text": "Y es gratuita."}
+  ],
+  "privacy_note": "Lo único que se descarga de internet son las teselas del mapa, de OpenFreeMap y OpenSeaMap. Detalles en la {privacy}.",
+  "privacy_link": "política de privacidad",
+  "langs_h2": "En 21 idiomas",
+  "langs_text": "Saildays sigue el idioma de tu teléfono, o el que elijas en Ajustes. Unidades: millas náuticas, nudos y grados. Modo oscuro incluido.",
+  "get_h2": "Próximamente en Google Play",
+  "get_text": "Saildays todavía no está en Google Play. La primera versión está en camino, y esta página tendrá el enlace a la tienda en cuanto esté publicada. La app es gratuita, sin cuenta y sin anuncios.",
+  "get_contact": "¿Preguntas? Escribe a {email}.",
+  "footer_disclaimer": "Saildays es un cuaderno de bitácora, no una ayuda a la navegación. Usa siempre cartas oficiales y tu propio criterio.",
+  "footer_privacy": "Política de privacidad",
+  "footer_contact": "Contacto",
+  "privacy_title": "Saildays Privacy Policy",
+  "privacy_description": "The developer of Saildays does not collect, store or share any personal data. Your trips stay on your phone.",
+  "notfound_title": "Página no encontrada",
+  "notfound_text": "Esta página no existe.",
+  "home": "Volver al inicio"
+}

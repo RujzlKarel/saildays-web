@@ -1,0 +1,135 @@
+{
+  "_comment": "Textes français, traduction automatique (Claude, 14. 11. 2026) sans relecture par un locuteur natif. Vouvoiement comme dans l'application. Espace insécable (U+00A0) avant : ; ? !. Mêmes clés et longueurs de tableaux que en.json. Jamais de tiret long, seulement -.",
+  "lang_name": "Français",
+  "lang_label": "Langue",
+  "skip": "Aller au contenu",
+  "title": "Saildays - le journal de bord qui s'écrit tout seul",
+  "description": "Saildays enregistre votre navigation et tient le journal de bord à votre place : trace, changements de cap, mouillage et marina, notes, carte marine, journal PDF à signer et heures moteur. Application Android gratuite, sans compte, sans publicité. Vos navigations restent sur votre téléphone.",
+  "nav_features": "Fonctions",
+  "nav_privacy": "Confidentialité",
+  "hero_h1": "Votre journal de bord s'écrit tout seul.",
+  "hero_lead": "<b>Saildays</b> enregistre votre trace et consigne chaque virement, empannage et changement de cap avec l'heure et la position. Vous naviguez, l'application tient le journal.",
+  "hero_cta": "Bientôt sur Google Play",
+  "hero_more": "Voir ce qu'elle fait",
+  "hero_note": "Application Android gratuite. Sans compte, sans publicité. Vos navigations restent sur votre téléphone.",
+  "hero_alt": "Journal Saildays en mode sombre avec la chronologie de la journée",
+  "features_h2": "Ce qu'elle fait",
+  "features_lead": "Appuyez sur Démarrer l'enregistrement en larguant les amarres. Saildays continue d'enregistrer écran éteint et sans réseau, et chaque entrée reçoit l'heure et la position. À votre retour, la navigation est déjà écrite.",
+  "features": [
+    {
+      "id": "record",
+      "title": "Enregistre la navigation pour vous",
+      "sub": "",
+      "text": "Chaque changement de cap de 30° ou plus entre dans le journal avec l'heure et la position du début du virement. Après 10 minutes sans bouger, une notification silencieuse demande : ancre, marina ou autre. Quand vous repartez, elle demande : moteur ou voiles. Les seuils se règlent dans les Paramètres.",
+      "visual": "shot-log",
+      "alt": "Journal avec la chronologie de la journée et un aperçu de la carte"
+    },
+    {
+      "id": "onetap",
+      "title": "Tout le reste en un geste",
+      "sub": "",
+      "text": "Moteur, voiles avec les ris, ancre, marina, bouée de mouillage ou amarres à terre, chacun d'un geste et avec votre position actuelle. Les notes prennent le vent, la manœuvre, la dictée et les photos. S'y ajoutent un journal radio avec le canal et le type d'appel, et un bouton homme à la mer qui vous ramène au point.",
+      "visual": "shot-note",
+      "alt": "Note avec vent, manœuvre et photos"
+    },
+    {
+      "id": "map",
+      "title": "Une vraie carte marine",
+      "sub": "",
+      "text": "Votre trace sur OpenStreetMap avec le balisage d'OpenSeaMap : bouées, feux et ports. Colorée selon voiles et moteur, avec chaque entrée du journal. Les zones de carte consultées restent sur votre téléphone (jusqu'à 200 Mo), la carte fonctionne donc aussi hors ligne.",
+      "visual": "shot-map",
+      "alt": "Carte avec la trace et le balisage OpenSeaMap"
+    },
+    {
+      "id": "pdf",
+      "title": "Un journal que vous pouvez signer",
+      "sub": "Nouveau dans la version 1.1",
+      "text": "Exportez un journal de bord PDF qui ressemble à celui en papier : chaque entrée par jour avec l'heure, la position, le cap et la vitesse, prêt à imprimer. La dernière page porte une ligne de signature pour le skipper, afin que l'impression puisse servir de justificatif de vos milles.",
+      "visual": "paper",
+      "alt": ""
+    },
+    {
+      "id": "engine",
+      "title": "Heures moteur",
+      "sub": "Nouveau dans la version 1.1",
+      "text": "Saisissez le relevé du compteur au départ. Le résumé de la navigation et le PDF indiquent le relevé à l'arrivée et le temps au moteur, et le total de votre bateau s'additionne sur toutes les navigations.",
+      "visual": "ledger",
+      "alt": ""
+    },
+    {
+      "id": "pause",
+      "title": "Mettre en pause, corriger le début ou la fin",
+      "sub": "Nouveau dans la version 1.1",
+      "text": "Mettez l'enregistrement en pause pour une journée à terre et reprenez d'un geste. Enregistrement lancé dans la voiture, ou navigation jamais terminée ? Déplacez le début ou la fin après coup ; ce qui sort de la nouvelle plage est supprimé.",
+      "visual": "timeline",
+      "alt": ""
+    },
+    {
+      "id": "export",
+      "title": "Exportez quand vous en avez besoin",
+      "sub": "",
+      "text": "Une navigation terminée part en ZIP avec une trace GPX pour toute application cartographique, un fichier JSON avec tout le journal et les photos jointes, ou en journal de bord PDF. Envoyez-le sur Google Drive ou par e-mail, ou gardez-le sur votre téléphone.",
+      "visual": "shot-export",
+      "alt": "Résumé de fin de navigation avec export"
+    }
+  ],
+  "paper": {
+    "title": "Journal de bord",
+    "trip": "Kornati 2026",
+    "day": "Lundi 12 octobre 2026",
+    "cols": ["Heure", "Position", "Cap", "Vitesse", "Entrée"],
+    "rows": [
+      ["09:51", "43°50,4' N 15°15,6' E", "096°", "5,4 nd", "Voiles : GV + génois"],
+      ["10:46", "43°51,0' N 15°22,8' E", "091°", "5,9 nd", "Changement de cap 83° vers 91°"],
+      ["11:30", "43°50,9' N 15°28,8' E", "088°", "4,8 nd", "Déjeuner et baignade, vent W 2 Bft"],
+      ["11:44", "43°51,1' N 15°30,0' E", "-", "0,0 nd", "Ancre"],
+      ["14:10", "43°49,2' N 15°35,4' E", "-", "-", "Marina"]
+    ],
+    "sig_skipper": "Skipper (nom, signature)",
+    "sig_date": "Date",
+    "page": "page 3 / 3"
+  },
+  "ledger": {
+    "rows": [
+      ["Compteur au départ", "1 204,3 h"],
+      ["Compteur à l'arrivée", "1 205,4 h"],
+      ["Au moteur sur cette navigation", "1 h 09 min"],
+      ["Total pour le bateau", "38,6 h"]
+    ]
+  },
+  "timeline": {
+    "rows": [
+      {"when": "Sam 10 oct 06:15", "text": "Début de l'enregistrement, trajet en voiture jusqu'à la marina", "removed": true},
+      {"when": "Sam 10 oct 07:40", "text": "Début de la navigation, déplacé ici", "removed": false},
+      {"when": "Dim 11 oct", "text": "Enregistrement en pause, journée à terre", "removed": false},
+      {"when": "Lun 12 oct 14:10", "text": "Navigation terminée", "removed": false}
+    ]
+  },
+  "how_h2": "Comment ça marche",
+  "steps": [
+    {"title": "Démarrez l'enregistrement", "text": "Appuyez sur Démarrer l'enregistrement en larguant les amarres. Une notification indique que l'enregistrement tourne, même écran éteint."},
+    {"title": "Naviguez", "text": "Saildays consigne les changements de cap et demande les arrêts et les départs. Répondez directement dans la notification, ou plus tard dans le journal."},
+    {"title": "Regardez en arrière", "text": "Parcourez le journal jour par jour, revoyez la navigation sur la carte et, de retour chez vous, exportez-la ou imprimez le journal PDF."}
+  ],
+  "privacy_h2": "Privé par conception",
+  "privacy_items": [
+    {"strong": "Vos navigations restent sur votre téléphone.", "text": "Il n'y a pas de serveur et rien ne nous est envoyé. La position n'est utilisée que pendant l'enregistrement."},
+    {"strong": "Pas de compte.", "text": "Pas d'inscription, pas d'e-mail : ouvrez l'application et larguez les amarres."},
+    {"strong": "Pas de publicité, pas d'analyse, pas de pistage.", "text": "Et c'est gratuit."}
+  ],
+  "privacy_note": "La seule chose téléchargée depuis Internet, ce sont les tuiles de carte, depuis OpenFreeMap et OpenSeaMap. Détails dans la {privacy}.",
+  "privacy_link": "politique de confidentialité",
+  "langs_h2": "En 21 langues",
+  "langs_text": "Saildays suit la langue de votre téléphone, ou celle que vous choisissez dans les Paramètres. Unités : milles nautiques, nœuds et degrés. Mode sombre compris.",
+  "get_h2": "Bientôt sur Google Play",
+  "get_text": "Saildays n'est pas encore sur Google Play. La première version est en route, et cette page recevra le lien vers la boutique dès qu'il sera actif. L'application est gratuite, sans compte et sans publicité.",
+  "get_contact": "Une question ? Écrivez à {email}.",
+  "footer_disclaimer": "Saildays est un journal de bord, pas une aide à la navigation. Utilisez toujours les cartes officielles et votre propre jugement.",
+  "footer_privacy": "Politique de confidentialité",
+  "footer_contact": "Contact",
+  "privacy_title": "Saildays Privacy Policy",
+  "privacy_description": "The developer of Saildays does not collect, store or share any personal data. Your trips stay on your phone.",
+  "notfound_title": "Page introuvable",
+  "notfound_text": "Cette page n'existe pas.",
+  "home": "Retour à l'accueil"
+}
