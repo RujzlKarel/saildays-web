@@ -6,7 +6,7 @@
 # Zdrojove fotky s cernym displejem, obe z pohledu kormidelnika od zadi k pridi (Karel 14. 11. 2026 odmitl zaber
 # od pridi k zadi jako nerealisticky): media/photo/hero-fwd-2.png (ruka s telefonem v kokpitu, pred ni lod k pridi)
 # a helm-fwd-2.png (telefon v drzaku na sloupku kompasu, displej dozadu ke kormidelnikovi, ruka na kole),
-# mimo git, kopie na Drivu Osobni/Jachting/Aplikace/web-media/photo/ (rclone copy --update gdrive:... media/).
+# mimo git, kopie na Drivu Nice One s.r.o./Saildays/web-media/photo/ (rclone copy --update "gdrive:Nice One s.r.o./Saildays/web-media/" media/).
 # Orezy a kvalita jsou tady natvrdo, aby vysledek byl po novych screenshotech pixelove stejny (jen jine UI).
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -16,7 +16,7 @@ HERO=media/photo/hero-fwd-2.png
 HELM=media/photo/helm-fwd-2.png
 [ -x "$PY" ] || { echo "chybi .venv: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt"; exit 1; }
 for f in "$HERO" "$HELM"; do
-  [ -f "$f" ] || { echo "chybi $f (stahni z Drivu: rclone copy gdrive:Osobní/Jachting/Aplikace/web-media/photo/ media/photo/)"; exit 1; }
+  [ -f "$f" ] || { echo "chybi $f (stahni z Drivu: rclone copy \"gdrive:Nice One s.r.o./Saildays/web-media/photo/\" media/photo/)"; exit 1; }
 done
 tmp=$(mktemp -d)
 for l in ${1:-en cs}; do
