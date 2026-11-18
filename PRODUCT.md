@@ -4,7 +4,7 @@ Sepsáno 14. 11. 2026 Claude z briefu majitele (Karel byl na cestě, rozhovor ne
 
 ## Co to je
 
-Saildays je lodní deník pro Android, který se píše sám: nahrává trasu, zapisuje změny kurzu, ptá se na zastavení a vyplutí. Zdarma, bez účtu, bez reklam, data jen v telefonu. Vydává Nice One s.r.o., Brno. Web `saildays.app` je jediná veřejná stránka aplikace (do Google Play zatím není nahraná).
+Saildays je lodní deník pro Android, který se píše sám: nahrává trasu, zapisuje změny kurzu, ptá se na zastavení a vyplutí. Placená jednorázově (4,99 USD, v Česku 129,99 Kč, bez předplatného), bez účtu, bez reklam, data jen v telefonu. Vydává Nice One s.r.o., Brno. Web `saildays.app` je jediná veřejná stránka aplikace (do Google Play zatím není nahraná).
 
 ## Pro koho
 
@@ -17,7 +17,7 @@ Rekreační jachtaři a skipperi na charterech v Chorvatsku a ve Středomoří, 
 
 ## Důkazy (jen ověřené v podkladech)
 
-- Zdarma, bez účtu, bez reklam a analytiky v aplikaci.
+- Jednorázový nákup bez předplatného, bez účtu, bez reklam a analytiky v aplikaci.
 - Data zůstávají v telefonu; z internetu se stahují jen mapové dlaždice (OpenFreeMap, OpenSeaMap).
 - Automatický zápis změn kurzu (30° a víc), návrhy zastavení a vyplutí v notifikaci.
 - Verze 1.1: PDF deník ve vzhledu papírového s podpisovou linkou velitele, motohodiny, pauza záznamu a úprava začátku/konce plavby, 21 jazyků.
