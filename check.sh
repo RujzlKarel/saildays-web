@@ -63,7 +63,7 @@ for l in $LANGS; do
   grep -q -E "@nice-one|mailto:" "$f" && bad "$f obsahuje e-mail (rozhodnuti 14. 11. 2026: zadna adresa na webu, spam)"
   need "$f" 'Nice One s.r.o.'
   need "$f" 'Map data &copy; OpenStreetMap contributors, OpenMapTiles, OpenFreeMap, OpenSeaMap'
-  need "$f" 'href="#get"'; need "$f" 'id="get"'
+  need "$f" 'href="https://play.google.com/store/apps/details?id=app.saildays"'; need "$f" 'id="get"'
   need "$f" 'class="lang-menu"'
   # odkaz na zasady: en a cs vlastni, ostatni anglicke s (EN)
   case "$l" in
@@ -88,8 +88,8 @@ for l in $LANGS; do
     [ "$h3" = "$ref_h3" ] || bad "$f: jiny pocet nadpisu h3 ($h3) nez en ($ref_h3)"
   fi
 done
-need "$(home en)" "Coming soon on Google Play"
-need "$(home cs)" "Brzy v Google Play"
+need "$(home en)" "Get it on Google Play"
+need "$(home cs)" "Nyní na Google Play"
 for l in en cs; do for f in photo-hero-$l.webp photo-hero-$l-480.webp photo-helm-$l.webp photo-helm-$l-m.webp; do [ -s "$D/img/$f" ] || bad "chybi img/$f (tools/photos.sh)"; done; done
 [ -s "$D/img/og.png" ] || bad "chybi img/og.png"
 for f in img/*.webp; do

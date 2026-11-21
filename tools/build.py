@@ -27,6 +27,7 @@ ROOT = os.path.dirname(HERE)
 CONTENT = os.path.join(ROOT, "content")
 ASSETS = os.path.join(ROOT, "assets")
 FONTS = os.path.join(ASSETS, "fonts")
+PLAY_URL = "https://play.google.com/store/apps/details?id=app.saildays"
 DIST = os.path.join(ROOT, "dist")
 
 CONFIG = {
@@ -420,7 +421,7 @@ def page_home(ctx, lang):
         '<section class="hero"><div class="wrap hero-grid">'
         '<div class="hero-text"><h1>%(h1)s</h1>'
         '<div class="hero-copy"><p>%(lead)s</p>'
-        '<p class="act"><a class="btn btn-primary" href="#get">%(cta)s</a><a class="more" href="#features">%(more)s</a></p>'
+        '<p class="act"><a class="btn btn-primary" href="%(play)s">%(cta)s</a><a class="more" href="#features">%(more)s</a></p>'
         '<p class="note">%(note)s</p></div></div>'
         '%(photo)s'
         "</div></section>\n"
@@ -432,9 +433,9 @@ def page_home(ctx, lang):
         '<section class="langs" id="languages"><div class="wrap">%(hz)s<h2>%(l_h2)s</h2><p>%(l_text)s</p>'
         '<p class="lang-list">%(l_list)s</p></div></section>\n'
         '<section class="get" id="get"><div class="wrap get-grid"><div>%(hz)s<h2>%(g_h2)s</h2></div><div><p>%(g_text)s</p>'
-        '</div></div></section>'
+        '<p class="act"><a class="btn btn-primary" href="%(play)s">%(cta)s</a></p></div></div></section>'
     ) % {
-        "h1": esc(L["hero_h1"]), "lead": L["hero_lead"], "cta": esc(L["hero_cta"]), "more": esc(L["hero_more"]),
+        "play": PLAY_URL, "h1": esc(L["hero_h1"]), "lead": L["hero_lead"], "cta": esc(L["hero_cta"]), "more": esc(L["hero_more"]),
         "note": esc(L["hero_note"]), "photo": hero_photo, "hz": HORIZON,
         "f_h2": esc(L["features_h2"]), "f_lead": L["features_lead"], "spreads": spreads_html,
         "how_h2": esc(L["how_h2"]), "steps": steps, "p_h2": esc(L["privacy_h2"]), "priv": priv,

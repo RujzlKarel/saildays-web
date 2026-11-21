@@ -130,7 +130,7 @@ Paleta je Saildays, ne Navy: navy `#0b3a5c` z ikony je zároveň inkoust textu i
 - motiv lodě ze značky: horizont se zapadajícím sluncem (`.horizon`, 96 px linka + oranžový půlkruh) nad nadpisy sekcí, plachta se sluncem a horizontem v patičce; nic víc (žádný clip-art, žádné pulzující tečky),
 - Archivo rozšířené a těžké na nadpisy, stejná rodina na text, monospace jen tam, kde jde o zápis deníku,
 - list funkcí přes celou šířku, střídavě porcelán / navy (`.spread-deep` z build.py, ne nth-child, protože pás s fotkou seznam dělí),
-- modrá jen na tlačítko „Coming soon on Google Play", oranžová jen slunce,
+- modrá jen na tlačítko „Get it on Google Play", oranžová jen slunce,
 - žádné štítky nad nadpisy, pilulky, ikony ani karty; „Novinka 1.1" je podtitul pod nadpisem.
 
 ## Colors
